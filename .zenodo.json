@@ -1,0 +1,25 @@
+{
+  "title": "Quantum partial permutations in action",
+  "description": "<p>Preprint (40 pages, PDF and LaTeX source), together with the 13 Python programs used for its computations.</p><p>We study quantum partial permutations through magic completions, fixed points and partial graph symmetries. Cliques in the association graph describe classical partial isomorphisms, while walks give a basis for the quantum algebra. The abstract algebra recovers the association graph, and every polynomial attains its universal norm in a finite matrix representation. We determine how many fixed-point projections remain free at each rank and obtain Poisson and free Poisson limits. We classify partial Hadamard matrices with commuting row-quotient projections above row density 5/9 and describe partial translations of Fourier row restrictions.</p>",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Astra 6.2"
+    },
+    {
+      "name": "Banica, Teodor",
+      "affiliation": "CY Cergy Paris Université",
+      "orcid": "0000-0003-4680-0364"
+    }
+  ],
+  "keywords": [
+    "quantum partial permutations",
+    "partial graph isomorphisms",
+    "association graphs",
+    "submagic matrices",
+    "fixed-point algebras",
+    "partial Hadamard matrices",
+    "Fourier matrices"
+  ]
+}
