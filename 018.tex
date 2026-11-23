@@ -1,0 +1,1612 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor,lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=magenta,urlcolor=black,pdfauthor={Astra 6.2 and Banica 2.0},pdftitle={Quantum partial permutations in action}]{hyperref}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+
+\newtheorem{ex}[thm]{Example}
+
+\newtheorem{question}[thm]{Question}
+\newtheorem{introthm}{Theorem}
+\renewcommand{\theintrothm}{\Alph{introthm}}
+\setlength{\parskip}{1pt}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+\setcounter{tocdepth}{1}
+\title{Quantum partial permutations in action}
+\author{Astra 6.2 and Banica 2.0}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We compute minimum magic completions over $M_2(\mathbb C)$ and relate diagonal completions to graph coloring. Fixed-rank models yield Poisson and free Poisson limits for fixed points. For partial graph symmetries, cliques encode maps, walks index a basis, and matrices attain all polynomial norms. On locally finite graphs, adjacency commutation induces quantum partial permutations of the components. We count partial cycle symmetries, recover the association graph from its algebra, and determine how many fixed-point projections remain free at each rank. We classify partial Hadamard matrices with commuting row-quotient projections above row density $5/9$ and describe partial translations of Fourier row restrictions.
+\end{abstract}
+\begingroup
+\color{magenta}\hypersetup{linkcolor=magenta}
+\setlength{\parskip}{0pt}
+\renewcommand{\addvspace}[1]{\vspace{2pt}}
+\tableofcontents
+\endgroup
+
+\section*{Introduction}
+\phantomsection\addcontentsline{toc}{section}{Introduction}
+
+
+A partial symmetry of a graph is an isomorphism between two induced subgraphs \cite{jaj}. In a simple graph any vertex can be sent to any other. To send two vertices at once, we must preserve the edge or nonedge between them. The association graph of \cite{bar} records which assignments can be made together.
+
+So{\l}tan constructed the quantum semigroup of all maps from a finite quantum space to itself by composing quantum families of maps \cite{soltan}. He later applied this construction to graph endomorphism games \cite{games}. Quantum partial permutations were introduced in \cite{bs}. The projection $u_{ia}$ records the assignment $a\to i$. For a colored graph, we require compatible assignments to preserve the colors.
+
+\begin{introthm}
+For finite colored directed graphs $X,Y$, classical partial isomorphisms from $X$ to $Y$ correspond to cliques in their association graph. A linear basis of the polynomial algebra of quantum partial isomorphisms consists of the unit and the words indexed by walks in that graph, including walks consisting of one vertex. The abstract $C^*$-algebra recovers the association graph up to isomorphism and hence counts the classical maps of each rank.
+\end{introthm}
+
+We next ask how large a matrix representation is needed to compute a norm.
+
+\begin{introthm}
+Every polynomial in the coordinates of quantum partial graph isomorphisms attains its universal $C^*$-norm in a finite-dimensional representation. For degree at most $L$, the dimension is bounded by the number of basis words of length at most $L$, including the unit.
+\end{introthm}
+
+The coordinates $u_{ii}$ record fixed points. They generate the algebra of functions on the configuration space.
+
+\begin{introthm}
+For every finite colored graph on $N$ vertices, the fixed-point projections of its quantum partial automorphisms freely generate the universal unital $C^*$-algebra on $N$ projections. For quantum partial permutations on $N$ points with rank fixed at $R$, the projections at $M$ marked points generate the universal algebra on $M$ projections exactly when $M\leq R\leq 2(N-M)$. At rank two on three points, each pair is universal and every word using all three fixed-point projections vanishes.
+\end{introthm}
+
+We also study the rank and the number of fixed points, compute the two-vertex algebras, count partial symmetries of cycles, and extend the coproduct to countable graphs. An infinite graph can carry both compact and discrete quantum symmetries. For connected locally finite graphs we recover the full quantum automorphism algebra of \cite{rv} from the partial one by imposing ordinary adjacency commutation. For a rectangular submagic matrix over $M_2(\mathbb C)$, the missing row projections determine the least size of a magic completion. For diagonal corners with rank-one deficits, this size is governed by graph coloring. Our last application concerns the row quotients of a partial Hadamard matrix \cite{bs}.
+
+\begin{introthm}
+Let $H$ be an $M\times N$ partial Hadamard matrix whose row-quotient projections commute. If $M>2N/3$, then $H$ consists, up to equivalence, of rows of a Fourier matrix of order $N$. If $M>5N/9$, the complete list up to equivalence and row deletion consists of Fourier matrices and the families $H_S(K,z)$ for $S=2,3,4$, where $K$ is a finite abelian group and $z$ is a family of phases indexed by its characters.
+\end{introthm}
+
+Section \ref{prelim} introduces partial permutations and computes minimum completion sizes. Section \ref{ranksection} follows the rank and the number of fixed points from the classical model to the quantum one. Sections \ref{partialiso} and \ref{walksection} construct partial graph symmetries and their representations. Section \ref{cycle} computes examples on small graphs and cycles and recovers the association graph from the abstract algebra. Section \ref{diagonalsection} studies fixed-point projections at unrestricted and prescribed rank. Sections \ref{hadamard} and \ref{fouriersection} apply the theory to partial Hadamard matrices and partial translations.
+
+\section{Quantum partial permutations}\label{prelim}
+
+Take three cards labeled $1,2,3$. Sending $1$ to $2$ and $2$ to $3$, and leaving the third card without an image, gives our first example.
+
+\begin{defn}
+Let $V=\{1,\ldots,N\}$. A partial permutation of $V$ is a bijection $f:I\to J$ between two subsets of $V$. Its domain is $I$, its image is $J$, and its rank is their common size. We denote the set of all these maps by $\widetilde S_N$.
+\end{defn}
+
+To compose two partial permutations we follow each arrow as far as it goes.
+
+\begin{prop}\label{inverse}
+For $f:I\to J$ and $g:K\to L$ the composite $gf$ has domain $f^{-1}(J\cap K)$ and sends $a$ to $g(f(a))$ there. This product is associative, with unit the full identity and zero the empty map. Reversing the arrows gives a partial inverse satisfying
+\[
+ f^{-1}f=1_I,\qquad ff^{-1}=1_J ,
+\]
+where $1_E$ denotes the partial identity on $E$. The group of units is $S_N$.
+\end{prop}
+\begin{proof}
+For three maps, either bracketing retains exactly the arrows which can be followed through all three, with the same final destination. Composing with the identity retains every arrow, and composing with the empty map retains none. Following $f$ and then reversing its arrows gives $1_I$, and the reverse order gives $1_J$. Both products are the full identity precisely when $I=J=V$.
+\end{proof}
+
+We can count these maps before choosing a way to represent them.
+
+\begin{prop}
+The number of partial permutations of rank $R$ on $N$ points is
+\[
+ \binom{N}{R}^2 R!
+\]
+for $0\leq R\leq N$. In particular there are seven partial permutations on two points and thirty-four on three points.
+\end{prop}
+\begin{proof}
+Choose the $R$ sources and the $R$ destinations independently, then choose a bijection between them. At $N=2$ this gives one empty map, four single arrows and two permutations. At $N=3$ the counts in increasing order of rank are $1,9,18,6$.
+\end{proof}
+
+We put sources in the columns of a matrix and destinations in its rows.
+
+\begin{prop}\label{permmat}
+The rule $U(f)_{ia}=1$ if $f(a)=i$ and $U(f)_{ia}=0$ otherwise identifies $\widetilde S_N$ with the zero-one matrices having at most one $1$ in each row and column. It satisfies
+\[
+ U(gf)=U(g)U(f),\qquad U(f^{-1})=U(f)^t ,
+\]
+and the nonzero columns and rows are the domain and image of $f$, respectively.
+\end{prop}
+\begin{proof}
+Each nonzero column specifies one arrow. Distinct arrows have distinct destinations precisely when each row contains at most one $1$. In $\sum_k U(g)_{ik}U(f)_{ka}$ a nonzero term is exactly a path from $a$ through $k$ to $i$. There is at most one such $k$. Transposition reverses every arrow.
+\end{proof}
+
+Let us apply this rule to the three cards.
+
+\begin{ex}
+Let $f$ send $1$ to $2$ and $2$ to $3$, and let $g$ send only $3$ to $1$. We have
+\[
+ U(f)=\begin{pmatrix}0&0&0\\1&0&0\\0&1&0\end{pmatrix},
+ \qquad U(g)U(f)=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}.
+\]
+The composite sends only $2$ to $1$. The arrow $1\to2$ stops at $2$, whereas $2\to3$ continues to $1$. In $U(f)$ the last column is zero because $3$ has no image, and the first row is zero because nothing arrives at $1$.
+\end{ex}
+
+As $f$ varies, the entry $u_{ia}(f)=U(f)_{ia}$ is the indicator function of a single assignment. The following definition keeps the row and column rules for these functions.
+
+\begin{defn}\label{submagic}
+A projection is an element $p$ of a $C^*$-algebra with $p=p^*=p^2$. A matrix of projections is submagic if distinct entries in any one row or column have product zero. A square submagic matrix is magic if the entries of each row and each column sum to the unit.
+\end{defn}
+
+On a Hilbert space a projection keeps the component along its range, and two projections have zero product exactly when their ranges are orthogonal. Two lines already give the following example.
+
+\begin{ex}\label{lines}
+On two points consider the matrix of operators
+\[
+ u=\begin{pmatrix}p&0\\0&q\end{pmatrix},\qquad
+ p=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+ q=\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}
+\]
+acting on two copies of $\mathbb C^2$. The matrix $u$ is submagic, and its two diagonal entries do not commute. These are the projections onto the lines spanned by $(1,0)$ and $(1,1)$. Each row and column contains only one nonzero projection. The upper right entries of $pq$ and $qp$ are $1/2$ and $0$, respectively.
+\end{ex}
+
+The construction of \cite{bs} allows all submagic matrices at once.
+
+\begin{defn}
+The coordinate algebra $C(\widetilde S_N^+)$ of the quantum partial permutations is the universal unital $C^*$-algebra generated by the entries of an $N\times N$ submagic matrix $u$. Thus each submagic array $P$ in a unital $C^*$-algebra $B$ gives a unique unital $*$-homomorphism to $B$ sending $u_{ia}$ to $P_{ia}$.
+\end{defn}
+
+The two familiar permutation algebras are recovered as quotients.
+
+\begin{prop}
+Imposing commutativity on $C(\widetilde S_N^+)$ gives $C(\widetilde S_N)$, with coordinates the indicators $u_{ia}(f)$. Imposing unit row and column sums gives the quantum permutation algebra $C(S_N^+)$. Imposing both conditions gives $C(S_N)$.
+\end{prop}
+\begin{proof}
+Scalar projections are zeros and ones. By Proposition \ref{permmat}, their submagic arrays are exactly the partial permutation matrices. They give all characters, and the indicator functions distinguish the points, so the commutative quotient is the full function algebra on $\widetilde S_N$. The sum relations are exactly the defining magic relations for $C(S_N^+)$. Among scalar matrices they select the permutation matrices.
+\end{proof}
+
+Finally we compose two submagic matrices.
+
+\begin{prop}\label{tensorcompose}
+If $P,Q$ are submagic matrices of compatible sizes, then $W_{ia}=\sum_k P_{ik}\otimes Q_{ka}$ is submagic. On $C(\widetilde S_N^+)$ we obtain
+\[
+ \Delta(u_{ia})=\sum_k u_{ik}\otimes u_{ka},\qquad
+ \varepsilon(u_{ia})=\delta_{ia},
+\]
+where $\Delta$ is a coassociative coproduct and $\varepsilon$ its counit.
+\end{prop}
+\begin{proof}
+The summands in each entry are orthogonal projections. In a product $W_{ia}W_{ib}$ with $a\ne b$, distinct intermediate indices give zero in the first factor and equal indices give zero in the second. The column calculation exchanges the factors. Universality gives $\Delta$. Both iterates sum over the same two intermediate points. The scalar identity matrix gives $\varepsilon$, and applying it in either factor returns $u_{ia}$.
+\end{proof}
+
+A submagic matrix need not be magic, even over the scalars. We ask how many extra rows and columns can supply its missing projections. We first work in the unital $C^*$-algebra of the given entries. At the end of the section we also ask what happens when we tensor them with an identity matrix.
+
+\begin{defn}
+A magic completion of an $M\times N$ submagic matrix $P$ to size $L$ is an $L\times L$ magic matrix with $P$ as its upper left corner. Write $R_i=\sum_jP_{ij}$ and $C_j=\sum_iP_{ij}$ for its row and column sums, and $\kappa(P)=\sum_iR_i$.
+\end{defn}
+
+A completion always exists if we set aside one new column per old row and one new row per old column.
+
+\begin{thm}\label{double}
+Every $M\times N$ submagic matrix $P$ completes to size $M+N$. An explicit magic completion is
+\[
+ W=\begin{pmatrix}P&\operatorname{diag}(1-R_i)\\
+           \operatorname{diag}(1-C_j)&P^t\end{pmatrix}.
+\]
+This bound is optimal uniformly over all $P$, even for scalar matrices.
+\end{thm}
+\begin{proof}
+The other entries in the row or column of a deficit projection $1-R_i$ are either zeros or the entries comprising $R_i$. This proves orthogonality and the unit sum in each old row and each new column. The deficits $1-C_j$ do the same for each new row and each old column. For the zero scalar array, the $M$ old rows must choose distinct columns outside the first $N$, forcing $L\geq M+N$. Padding by an identity block gives every larger size.
+\end{proof}
+
+In particular the universal square submagic algebra is realized by the upper corner of a full quantum permutation algebra.
+
+\begin{cor}\label{corner}
+The first $M$ rows and columns of the magic matrix of $S_{2M}^+$ generate a copy of $C(\widetilde S_M^+)$, and this copy is a unital $C^*$-algebra retract. On classical points the completion in Theorem \ref{double} gives an injection of sets $\widetilde S_M\to S_{2M}$.
+\end{cor}
+\begin{proof}
+The universal submagic relations give a homomorphism into $C(S_{2M}^+)$. Applying Theorem \ref{double} to the universal submagic matrix gives a homomorphism in the reverse direction. Their composite fixes the small generators. Classically the partial map can be read off the upper corner of the permutation matrix. In particular the rank and truncated fixed-point count extend to $S_{2M}$ as the sum of its upper-corner entries and the sum of its first $L$ diagonal entries. The doubling is a construction on arrays. For instance the empty partial map doubles to the interchange of the two blocks, whose square is the identity.
+\end{proof}
+
+For smaller completions a rank bound is necessary. In the commutative case it decides the question.
+
+\begin{prop}\label{deficit}
+If $P$ completes to size $L\geq\max(M,N)$, then $\kappa(P)\geq(M+N-L)1$. For commuting entries this condition is also sufficient, with a completion in the unital algebra generated by the entries.
+\end{prop}
+\begin{proof}
+The old rows need total mass $M\,1-\kappa(P)$ from the $L-N$ new columns. Each new column contributes at most one. For commuting projections, simultaneous zero-one patterns give finitely many scalar partial bijections on clopen pieces of the spectrum. If such a pattern has $R$ arrows, there are $M-R$ unused rows and $N-R$ unused columns. Match the former to new columns and the latter to new rows, then match the remaining new rows and columns. This works exactly when $R\geq M+N-L$. Choose a completion on each pattern and combine them using its indicator projection.
+\end{proof}
+
+When only one row and column are available, even the noncommutative case has an exact answer \cite{bs}.
+
+\begin{prop}\label{oneborder}
+Let $P$ be square of size $M$. A magic completion to size $M+1$ exists precisely when $\kappa(P)\geq(M-1)1$. It is then unique. Its new column and row consist of $1-R_i$ and $1-C_j$, and its new corner is
+\[
+ b=\kappa(P)-(M-1)1 .
+\]
+Equivalently $b$ is a projection, or either family of deficits is pairwise orthogonal.
+\end{prop}
+\begin{proof}
+The new entries are forced by the unit sums. Both families of deficits sum to $1-b$. A finite family of projections whose sum is at most one is orthogonal: compress the inequality by one member to see that every other member annihilates it. Thus the bound makes both families orthogonal and $1-b$ a projection. Conversely each orthogonal family gives $0\leq1-b\leq1$, and if $b$ is a projection the bound holds. With these conditions the forced array is magic.
+\end{proof}
+
+For $L\geq M$, the algebra for completions to size $L$ is the unital $C^*$-subalgebra of $C(S_L^+)$ generated by the entries $u_{ia}$ with $1\leq i,a\leq M$. For classical completions we take the same corner in $C(S_L)$.
+
+\begin{thm}
+For a square corner of size $M$, the algebra for completions to size $M$ is $C(S_M^+)$. At size $M+1$ it is $C(S_{M+1}^+)$, generated by its $M\times M$ corner, and at every size $L\geq2M$ it is $C(\widetilde S_M^+)$. For commutative coefficients and arbitrary $L\geq M$, the corner algebra is the function algebra on the partial permutations of rank at least $2M-L$.
+\end{thm}
+\begin{proof}
+At size $M$ the corner must itself be magic. At size $M+1$ Proposition \ref{oneborder} expresses all missing entries in terms of the corner and gives its universal property. The remaining assertions follow from Theorem \ref{double} and Proposition \ref{deficit}. In particular every two-point submagic matrix completes at size four, and the empty scalar matrix fails at size three.
+\end{proof}
+
+With two or more new columns, the rank bound can miss an obstruction already visible in the plane.
+
+\begin{ex}
+Let $p_1,p_2,p_3$ project onto the real lines at angles $0,\pi/3,2\pi/3$ in $\mathbb C^2$. The diagonal corner
+\[
+ P=diag(1-p_1,1-p_2,1-p_3)
+\]
+passes the rank bound for size five and has least completion size six over $M_2(\mathbb C)$. Indeed, adding the three projection matrices gives $\sum_i p_i=3I/2$, so $\kappa(P)=3I/2\geq I$. Each old row has a rank-one deficit. It must place that entire projection in one new column, and no two of the three lines are orthogonal. Three new columns are therefore necessary, and Theorem \ref{double} supplies them. The same minimum holds after any finite amplification by Theorem \ref{colorcompletion}: at each color the three vertices of the complete graph require orthogonal projections, so summing their ranks requires at least three colors.
+\end{ex}
+
+In dimension two the same observation gives an exact formula for every rectangular corner.
+
+\begin{thm}\label{planarcompletion}
+Let $P$ be an $M\times N$ submagic matrix over $M_2(\mathbb C)$. Let $E$ count its zero rows, and let $a_p$ count the rows whose deficit $1-R_i$ is the rank-one projection $p$. The least size of a magic completion over $M_2(\mathbb C)$ is
+\[
+ N+E+\sum_{\{p,1-p\}}\max(a_p,a_{1-p}),
+\]
+where each complementary pair occurring among the rank-one deficits is counted once.
+\end{thm}
+\begin{proof}
+A row with deficit $p$ must place $p$ in one new column. A zero row places either the identity in one new column, or two complementary rank-one projections in different new columns. A column containing an identity is thereby filled. In every other new column, the nonzero entries supplied by old rows belong to a single pair $\{p,1-p\}$, with at most one of each. If $e$ zero rows split along this pair, it needs at least $\max(a_p+e,a_{1-p}+e)$ columns. Summing over all pairs used, and counting the identity columns, gives the lower bound.
+
+For the construction, keep each old identity as a one-point block. Give each zero row its own new column with an identity, and each zero column its own new row with an identity. Among the remaining old rows and columns, all nonzero entries of any one row or column belong to a unique pair $\{p,1-p\}$. Grouping by pair therefore gives disjoint rectangular blocks.
+
+In a block of $U$ rows and $V$ columns, the positions occupied by $p$ and by $1-p$ form two scalar partial permutation matrices. If they have $s$ and $t$ ones, respectively, Proposition \ref{deficit} completes both to permutations of size $S=U+V-\min(s,t)$. Multiply the first permutation matrix by $p$, the second by $1-p$, and add. This gives a magic block with the prescribed corner. It uses $S-V=\max(U-s,U-t)$ new columns, exactly $\max(a_p,a_{1-p})$, since $U-s$ and $U-t$ count the two deficits. Taking the direct sum and returning the old rows and columns to their original positions gives the required completion.
+\end{proof}
+
+In higher dimensions even diagonal corners lead to graph coloring. Recall that $\chi(G)$ is the least number of colors needed to give adjacent vertices different colors. For a quantum coloring \cite{coloring} with $K$ colors, vertex $i$ receives projections $q_{i1},\ldots,q_{iK}$ in a common $M_R(\mathbb C)$. They are orthogonal with sum $I_R$ at each vertex, and $q_{ic}q_{jc}=0$ on every edge $ij$ for each color $c$. Write $\chi_q(G)$ for the least $K$ allowed by some finite $R$. For $R=1$ the unique nonzero projection at a vertex specifies its ordinary color.
+
+\begin{thm}\label{colorcompletion}
+Let $p_1,\ldots,p_M$ be rank-one projections in $M_D(\mathbb C)$, set $P=diag(1-p_1,\ldots,1-p_M)$, and join distinct vertices $i,j$ in $G$ when $p_ip_j\ne0$. The least completion size of $P$ over $M_D(\mathbb C)$ is $M+\chi(G)$. The least size obtainable for $P\otimes I_R$ over $M_{DR}(\mathbb C)$, as $R$ ranges over the positive integers, is $M+\chi_q(G)$. Every finite simple graph occurs in this construction.
+\end{thm}
+\begin{proof}
+Fix $R$ and write $P^{(R)}=P\otimes I_R$ for the corner obtained by tensoring each entry with $I_R$. In a completion of size $M+K$, the new entries $B_{ic}$ in old row $i$ sum to $p_i\otimes I_R$. A subprojection of $p_i\otimes I_R$ has the form $p_i\otimes q_{ic}$, since its range lies in the tensor product of a line with $\mathbb C^R$. Orthogonality and the sum in this row give a partition of $I_R$ by the $q_{ic}$. In column $c$, the product of two such entries is $p_ip_j\otimes q_{ic}q_{jc}$. Its vanishing gives precisely the edge condition.
+
+Conversely, given such a coloring, set $B_{ic}=p_i\otimes q_{ic}$. Then
+\[
+ W=\begin{pmatrix}
+ P^{(R)}&B\\ B^t&diag(1-\sum_i B_{ic})
+ \end{pmatrix}
+\]
+is magic. Indeed, the new entries fill each old row and column, and in each new row or column the diagonal term complements a sum of orthogonal projections. Thus $K$ new columns suffice exactly when $G$ admits a quantum $K$-coloring in dimension $R$. Taking $R=1$, then allowing all finite $R$, proves the two formulas.
+
+Finally let $A$ be the adjacency matrix of a given finite simple graph. For sufficiently small $\delta>0$ the matrix $I+\delta A$ is positive definite with unit diagonal. Its Gram vectors have norm one, and two distinct ones have nonzero inner product exactly on an edge. Their line projections realize $G$.
+\end{proof}
+
+The coefficient dimension can therefore change the answer even for a fixed diagonal corner.
+
+\begin{cor}
+There is an $18\times18$ diagonal corner over $M_{18}(\mathbb C)$ whose least completion size is $23$. After tensoring its entries with $I_4$, the least size is $22$, and no finite amplification gives a smaller size.
+\end{cor}
+\begin{proof}
+Take the $18$-vertex graph of \cite{coloring}. Its chromatic number is five and it has a quantum four-coloring in dimension four. Its four-clique requires at least four colors in every dimension: summing the ranks at its four vertices gives $4R$, while each color contributes at most $R$. Use the Gram construction and Theorem \ref{colorcompletion}.
+\end{proof}
+
+The programs \texttt{borders.py} and \texttt{completions.py} check the constructions. The latter builds minimum-size completions over $M_2(\mathbb C)$ and verifies the classical and quantum coloring calculations in the last example.
+
+\section{Rank and fixed points}\label{ranksection}
+
+There are two natural counts associated to a partial permutation. A card can have an image, and it can be back in its original place. We follow these counts from a uniform partial permutation to a quantum matrix model.
+
+\begin{defn}
+For the universal submagic matrix on $N$ points put
+\[
+ \kappa=\sum_{i,a=1}^N u_{ia},\qquad \chi_L=\sum_{i=1}^L u_{ii}
+\]
+for $0\leq L\leq N$. On classical points these count the domain and the fixed points among the first $L$ positions.
+\end{defn}
+
+We first specify what it means to choose a rank.
+
+\begin{samepage}
+\begin{prop}\label{rankmodel}
+We have $0\leq\chi_L\leq\kappa\leq N$. For $1\leq R\leq N$ the formula
+\[
+ U_{ia}=\sum_{s,t=1}^R p_{is}\otimes q_{st}\otimes r_{ta}
+\]
+defines a representation of $C(\widetilde S_N^+)/\langle\kappa-R\,1\rangle$, where $p,q,r$ are the magic matrices of $S_N^+,S_R^+,S_N^+$ in separate tensor factors. Classically the formula sends independent uniform permutations of the three sets to a uniform partial permutation of rank $R$. For $R=0$ use the zero array.
+\end{prop}
+\end{samepage}
+\begin{proof}
+Each row sum is a projection dominated by $1$, proving the bounds. Restrict $p$ to its first $R$ columns and $r$ to its first $R$ rows. Two applications of Proposition \ref{tensorcompose} give the submagic array $U$. Summing over $i,a$ gives $\sum_{st}q_{st}=R\,1$. For classical permutations $\alpha,\beta,\gamma$, its domain is $\gamma^{-1}\{1,\ldots,R\}$ and the rule is $\gamma^{-1}(t)\to\alpha(\beta(t))$. Every rank-$R$ bijection is obtained by ordering its source and target and extending the orders to permutations. The rank-$R$ set is the orbit of the partial identity on $\{1,\ldots,R\}$ under left and right relabeling. Its stabilizer consists of two permutations agreeing on these $R$ positions, preserving the set, and arbitrary independently on each complement. This identifies the classical rank space as a homogeneous space. The uniform law on triples is invariant under independent relabeling of source and target, which acts transitively on this finite set. At $R=N$ the quantum map is the iterated coproduct and the three Haar states give back Haar integration by invariance.
+\end{proof}
+
+In particular the universal rank can take noninteger spectral values.
+
+\begin{prop}
+For $N\geq2$ the spectrum of $\kappa$ in $C(\widetilde S_N^+)$ is $[0,N]$. For $N=1$ it consists of $0,1$.
+\end{prop}
+\begin{proof}
+Use a diagonal submagic matrix with the two projections onto the unit vectors $(1,0)$ and $(\sqrt x,\sqrt{1-x})$, $0\leq x\leq1$. Their sum has eigenvalues $1\pm\sqrt x$, by its trace and determinant. Insert $j$ identity entries and otherwise zeros in the remaining positions. For $0\leq j\leq N-2$ the intervals $[j,j+2]$ cover $[0,N]$, and Proposition \ref{rankmodel} gives the reverse inclusion. At $N=1$ the universal coordinate is one projection.
+\end{proof}
+
+The following asymptotic formula is well-known.
+
+\begin{prop}
+The number of partial permutations on $N$ cards satisfies
+\[
+ |\widetilde S_N|\sim \frac{N!\,e^{2\sqrt N-1/2}}{2\sqrt{\pi}\,N^{1/4}}
+\]
+as $N$ tends to infinity.
+\end{prop}
+\begin{proof}
+Writing $j=N-R$ in the rank count gives $|\widetilde S_N|/N!=\sum_j (N)_j/(j!)^2$, where $(N)_j=N(N-1)\ldots(N-j+1)$ and terms with $j>N$ vanish. Put $B(x)=\sum_{j\geq0}x^{2j}/(j!)^2$. Expanding the exponentials and integrating their product gives
+\[
+ B(x)=\frac1{2\pi}\int_{-\pi}^{\pi}e^{2x\cos t}\,dt
+ \sim \frac{e^{2x}}{2\sqrt{\pi x}}.
+\]
+Indeed, after $t=y/\sqrt x$, the normalized integrand tends to $e^{-y^2}$ and is bounded by $e^{-4y^2/\pi^2}$ on the integration interval. Give $j$ probability $x^{2j}/((j!)^2B(x))$. Then $j/x\to1$ in probability: its exponential moment at $h$ is $B(xe^{h/2})/B(x)$, and Markov's inequality with small fixed $h>0$ or $h<0$ bounds each relative tail exponentially. At $x=\sqrt N$ it follows that $(N)_j/N^j\to e^{-1/2}$ in probability, by expanding $\sum_{a<j}\log(1-a/N)$. These ratios lie in $[0,1]$, so their means have the same limit. Multiplying by $N!B(\sqrt N)$ gives the formula.
+\end{proof}
+
+We recall from \cite{qp} the classical and quantum fixed-point laws at fixed rank. We begin with the exact classical law.
+
+\begin{thm}\label{classicallaw}
+Under the uniform law of rank $R$, the probability generating polynomial of $\chi_L$ is
+\[
+ E(z^{\chi_L})=\sum_{a=0}^{\min(R,L)}\frac{(z-1)^a}{a!}\cdot\frac{(R)_a(L)_a}{(N)_a^2}.
+\]
+If $R/N\to s$ and $L/N\to t$, the fixed-point count converges in law to a Poisson variable of mean $st$.
+\end{thm}
+\begin{proof}
+For $a$ prescribed positions to be fixed, each must belong to both independent uniform $R$-subsets. The conditional probability that the uniform bijection fixes them is $1/(R)_a$. Thus the probability of fixing all $a$ is $(R)_a/(N)_a^2$. Expanding $z^{\chi_L}$ as a product of $L$ factors $1+(z-1)u_{ii}$ gives the formula. Each coefficient ratio tends to $(st)^a$ and is bounded by one. The limiting generating function is $e^{st(z-1)}$. See \cite{qp} for details.
+\end{proof}
+
+For three cards at rank two, the polynomial with $L=3$ is $1/2+z/3+z^2/6$. Among the eighteen maps there are thus nine with no fixed point, six with one, and three with two.
+
+In the quantum case we evaluate at the product of the three Haar states in Proposition \ref{rankmodel}. The Haar state is the normalized invariant integral on each full quantum permutation group. Their product specifies a state on the rank model. In the universal algebra $\kappa$ need not be central. In Example \ref{lines} its image $p+q$ fails to commute with $p$.
+
+\begin{thm}\label{ranklaws}
+Assume $R/N\to s$ and $L/N\to t$ with $s,t\in[0,1]$. In the quantum rank model the limiting law of $\chi_L$ is free Poisson of parameter $st$. Its $D$-th moment is
+\[
+ \sum_{\pi\in NC(D)}(st)^{|\pi|},
+\]
+where $D\geq1$, $NC(D)$ consists of the partitions of $1,\ldots,D$ drawable on a circle without crossing, and $|\pi|$ counts their blocks. At $st=0$ the limiting law is $\delta_0$.
+\end{thm}
+\begin{proof}
+First suppose $R\to\infty$. Haar integration on $S_M^+$ projects onto the span of the indicator vectors indexed by $\pi\in NC(D)$. The vector for $\pi$ is supported on the index sequences $(i_1,\ldots,i_D)$ that are constant on each block of $\pi$. After normalization by $M^{-|\pi|/2}$, their Gram matrix tends to the identity.
+
+Expanding $\chi_L^D$ in the three Haar factors gives three sums over common indices, of sizes $R,R,L$. A sum pairing two different normalized indicators tends to zero: the common indices must be constant on the join of the two partitions, which has fewer blocks than the average of their block counts. For a common partition $\pi$ with $b$ blocks, the three factors are $(R/N)^{b/2}$, $(R/N)^{b/2}$ and $(L/N)^b$. Their product tends to $(st)^b$. Summing over $\pi$ gives the moments of the free Poisson law, which is determined by its moments. This calculation includes $st=0$ when $R\to\infty$. Along any subsequence with $R\leq C$ for a fixed $C\geq1$, we have $s=0$ and $0\leq\chi_L\leq R\,1$, so
+\[
+ 0\leq E(\chi_L^D)\leq C^{D-1}E(\chi_L)=C^{D-1}RL/N^2\to0 .
+\]
+Every subsequence has a further subsequence covered by one of these two cases. See \cite{qp} for details.
+\end{proof}
+
+The calculation also gives a finite formula suitable for exact computation.
+
+\begin{prop}\label{rankgram}
+Let $N\geq R\geq\max(4,D)$ and $0\leq L\leq N$. For $M=N,R,L$ form the matrix $B_M(\pi,\sigma)=M^{|\pi\vee\sigma|}$ indexed by $NC(D)$. In the product Haar state of the quantum rank model the $D$-th moment of $\chi_L$, for $D\geq1$, is
+\[
+ Tr\big(B_N^{-1}B_R B_N^{-1}B_L\big).
+\]
+Using all set partitions in place of $NC(D)$ gives the finite classical moment.
+\end{prop}
+\begin{proof}
+Use the unnormalized indicator vectors in the preceding proof. At $M\geq D$ they are independent: evaluate them on index sequences with each prescribed equality pattern, starting with the partition into singletons and proceeding by refinement. The evaluation matrix on partition types is triangular with ones on the diagonal. The three Haar projections and their three contractions give the trace of
+\[
+ B_N^{-1}B_R B_R^{-1}B_R B_N^{-1}B_L.
+\]
+Cancel the middle inverse. For ordinary permutations invariant tensors are exactly the vectors whose coefficients depend only on which indices agree, since two index sequences lie in the same orbit under relabeling exactly when they have the same equality pattern. Their span is given by the indicators for all partitions, which proves the classical formula. At $R=L=N$ the trace counts noncrossing partitions or all partitions, respectively.
+\end{proof}
+
+For six cards at rank four, testing the first three positions gives classical fourth moment $143/150$ and quantum fourth moment $24133/27075$. The program \texttt{ranks.py} evaluates the two traces over the rationals. At degrees at most three every partition is noncrossing, so the two models have the same first three moments in this example.
+
+There is a continuous version of the same calculation. For partial isometries the topology affects composition.
+
+\begin{prop}\label{linearpartial}
+Extension by zero identifies isometries between linear subspaces of $\mathbb R^N$ with real matrices $U$ satisfying $UU^tU=U$. Composition on the largest possible domain is
+\[
+ U\circ V=U(U^tU\wedge VV^t)V,
+\]
+where $P\wedge Q$ projects onto the intersection of the ranges. For $N\geq2$ this associative operation is discontinuous in the ordinary matrix topology.
+\end{prop}
+\begin{proof}
+Extension by zero gives $U^tU$ and $UU^t$ as the projections onto the initial and final spaces. The middle projection in the formula selects the common space on which the two maps compose. Associativity follows from composition on the largest possible domain. See \cite{qp} for details.
+
+Fix a line $E$ in a plane and let a distinct line $F$ tend to $E$. The partial identities on $E$ and $F$ compose to zero, whereas the partial identity on $E$ composed with itself is the projection onto $E$. Thus composition is discontinuous for $N\geq2$ and cannot induce a coproduct on continuous functions. The meet of two fixed projections $P,Q$ is nevertheless the pointwise limit of $(PQP)^j$, as one sees by diagonalizing $PQP$.
+\end{proof}
+
+The orthogonal rank models of \cite{qp} can be defined directly from Haar orthogonal matrices.
+
+\begin{thm}
+Replace the three permutation matrices in Proposition \ref{rankmodel} by independent Haar orthogonal matrices of sizes $N,R,N$, or by their free orthogonal analogues with the product Haar state. The resulting array is a partial isometry with self-adjoint entries and $\sum_{ia}U_{ia}^2=R\,1$. In the regime of Theorem \ref{ranklaws}, the truncated trace converges respectively to a centered Gaussian or a centered semicircle law of variance $st$.
+\end{thm}
+\begin{proof}
+In matrix notation $U=pJqJ^tr$ with $J:\mathbb R^R\to\mathbb R^N$ the coordinate inclusion. Orthogonality gives $UU^tU=U$, and summation using the column relations $\sum_i p_{is}p_{iv}=\delta_{sv}$ and the row relations $\sum_j r_{tj}r_{wj}=\delta_{tw}$ gives $\sum_{ia}U_{ia}^2=R\,1$. Classically every rank-$R$ partial isometry has this factorization by extending orthonormal bases. Universally the self-adjoint-entry partial-isometry presentation has the classical space as its commutative quotient and gives $O_N^+$ upon imposing $UU^t=U^tU=1$. These rank models therefore apply to both spaces. The orthogonal fixed-vector formula uses all pairings in the classical case and noncrossing pairings in the free case. The normalized Gram calculation of Theorem \ref{ranklaws} now gives zero odd moments and weights $(st)^{D/2}$ for each pairing at even degree $D$. These are exactly the Gaussian and semicircle moments.
+\end{proof}
+
+\section{Partial symmetries of graphs}\label{partialiso}
+
+Draw the path $1$--$2$--$3$ on our three cards. The move $1\to2$, $2\to3$ carries its domain edge to another edge. If $\{1,2\}$ is the only edge, the same move sends an edge to a nonedge. We encode this test by colors.
+
+\begin{defn}
+A finite colored directed graph $X$ consists of a vertex set and a matrix $d^X$ whose entries label ordered pairs by complex numbers. Diagonal entries record loops or vertex colors. For a simple graph the matrix has entries $1$ on edges and $0$ elsewhere.
+\end{defn}
+
+To compare two graphs we use the same color labels in both.
+
+\begin{defn}
+A partial isomorphism $f:X\to Y$ is a bijection between subsets of the two vertex sets satisfying
+\[
+ d^Y_{f(a)f(b)}=d^X_{ab}
+\]
+for every $a,b$ in its domain. We include the empty map. The partial automorphisms of $X$ form the semigroup $\widetilde G(X)$ under composition on the largest possible domain.
+\end{defn}
+
+Reversal and composition have the same meaning as for partial permutations.
+
+\begin{prop}
+The partial automorphisms of $X$ are closed under composition and inversion. Their idempotents are the partial identities, and their units form $G(X)$.
+\end{prop}
+\begin{proof}
+Composing two color-preserving bijections on the domain of Proposition \ref{inverse} preserves colors. Reversing the arrows of a partial automorphism gives another color-preserving bijection. It is the unique partial bijection $g$ satisfying $fgf=f$ and $gfg=g$, since these identities force $g$ to reverse exactly the arrows of $f$. If $f^2=f$, then $f(f(a))=f(a)$ on the domain, so injectivity gives $f(a)=a$. Finally a unit is a full color-preserving bijection.
+\end{proof}
+
+We next record the test for making two assignments together.
+
+\begin{defn}\label{assoc}
+The association graph $K(Y,X)$ has a vertex $(i,a)$ for every allowed assignment $a\to i$, meaning $d^Y_{ii}=d^X_{aa}$. Two distinct vertices $(i,a),(j,b)$ are adjacent when $i\ne j$, $a\ne b$, and
+\[
+ (d^Y_{ij},d^Y_{ji})=(d^X_{ab},d^X_{ba}).
+\]
+We regard $K(Y,X)$ as an undirected simple graph, including when the input graphs are directed.
+\end{defn}
+
+For a single directed arrow the interchange of its endpoints fails the ordered color test. A clique, that is, a set of pairwise adjacent vertices, passes all these tests simultaneously.
+
+\begin{prop}\label{cliques}
+The partial isomorphisms from $X$ to $Y$ of rank $R$ correspond to the $R$-vertex cliques of $K(Y,X)$. If $M_X(T)$ counts the vertex subsets of $X$ inducing a copy of a colored graph $T$, their number is
+\[
+ \sum_{|T|=R}M_X(T)M_Y(T)|G(T)|,
+\]
+where the sum is over isomorphism types and the empty type has one automorphism.
+\end{prop}
+\begin{proof}
+The assignments in a partial isomorphism have distinct sources and targets and pass every pair test. Conversely these conditions on a clique give a partial bijection preserving all colors. For the formula, choose a domain and an image of the same induced type $T$. Having fixed one isomorphism between them, all others are obtained uniquely by composition with an automorphism of the domain.
+\end{proof}
+
+Keeping the vertex labels gives a reconstruction result already in rank two. For reconstruction from the abstract semigroup of partial automorphisms, see \cite{jaj}.
+
+\begin{prop}\label{recover}
+For simple graphs $X,Y$ on the same labeled set, $\widetilde G(X)=\widetilde G(Y)$ if and only if $Y=X$ or $Y=X^c$. The rank-two partial maps suffice to decide this equality.
+\end{prop}
+\begin{proof}
+Two unordered pairs have the same edge status exactly when there is a rank-two partial automorphism taking one onto the other. Hence the collection of maps determines the partition of pairs into edges and nonedges, up to exchanging the classes. When there is at most one class the graph is empty or complete. Conversely, complementing a graph preserves every equality of edge statuses and hence every partial automorphism.
+\end{proof}
+
+We now impose the color test on a submagic matrix.
+
+\begin{defn}
+For a submagic array $u$ with rows in $Y$ and columns in $X$, let $R$ and $C$ be the diagonal matrices of its row and column sums, respectively. Define $A(Y,X)$ to be the universal unital $C^*$-algebra on this array subject to
+\[
+ R(d^Yu-ud^X)C=0.
+\]
+We write $A(X)=C(\widetilde G^+(X))$ when $Y=X$. On the empty loopless graph we recover $C(\widetilde S_N^+)$.
+\end{defn}
+
+The diagonal entries of $R,C$ are projections by orthogonality. In a partial permutation matrix they mark the image and domain. We can now read the compressed equation one pair at a time.
+
+\begin{prop}\label{local}
+There is one generator $p_v$ of $A(Y,X)$ for each vertex $v$ of $K(Y,X)$. The complete defining relations are
+\[
+ p_v=p_v^*=p_v^2,\qquad p_vp_w=0
+\]
+in the second formula for distinct nonadjacent $v,w$. Under this presentation $u_{ia}=p_{(i,a)}$ at allowed assignments and $u_{ia}=0$ elsewhere.
+\end{prop}
+\begin{proof}
+The universal algebra exists because the projections have norm at most one and the zero array is a scalar representation. Multiply entry $(i,b)$ of the compressed equation on the left by $u_{ia}$ and on the right by $u_{jb}$. Orthogonality leaves
+\[
+ (d^Y_{ij}-d^X_{ab})u_{ia}u_{jb}=0 .
+\]
+Conversely, summing these relations over $a,j$ gives the compressed equation. Taking the same assignment twice forces a generator with unequal diagonal colors to vanish. For distinct assignments both ordered color tests follow, since a zero product of projections also vanishes in reverse order. Together with the submagic relations this is precisely the asserted presentation.
+\end{proof}
+
+We next compose partial isomorphisms through an intermediate graph $Z$.
+
+\begin{thm}\label{composition}
+For every intermediate finite colored graph $Z$ there is a unital homomorphism
+\[
+ \Delta_Z:A(Y,X)\to A(Y,Z)\otimes_{min} A(Z,X),
+ \qquad u^{YX}_{ia}\to\sum_{k\in Z}u^{YZ}_{ik}\otimes u^{ZX}_{ka}.
+\]
+These maps are associative under repeated composition. At $X=Y=Z$ they equip $A(X)$ with a coassociative coproduct and counit $u_{ia}\to\delta_{ia}$. Its classical semigroup is $\widetilde G(X)$.
+\end{thm}
+\begin{proof}
+Proposition \ref{tensorcompose} gives submagic orthogonality. It remains to check colors. In a product for mismatched colors $d^Y_{ij}\ne d^X_{ab}$, an intermediate pair $(k,l)$ has color $d^Z_{kl}$ different from at least one of the two prescribed colors. Its summand vanishes in that factor. Proposition \ref{local} gives the homomorphism. Associativity follows by expanding both compositions over the same two indices. The identity partial map gives the counit, and scalar submagic arrays are partial bijections. Proposition \ref{cliques} identifies the characters and their multiplication.
+\end{proof}
+
+For the incidence relations it is useful to remove the redundant support projections and to reverse the assignments.
+
+\begin{prop}\label{transpose}
+One has $Ru=u=uC$. Thus the compressed equation is equivalent to $Rd^Yu=ud^XC$. Transposition gives an involutive $*$-anti-isomorphism from $A(Y,X)$ to $A(X,Y)$ sending $u^{YX}_{ia}$ to $u^{XY}_{ai}$. At $X=Y$ it reverses the coproduct and induces inversion on classical partial maps.
+\end{prop}
+\begin{proof}
+Orthogonality gives $R_i u_{ia}=u_{ia}=u_{ia}C_a$, proving the first two assertions. Interchanging source and target preserves the allowed assignments and the two ordered color tests. Reversed order causes no problem since a forbidden product vanishes in both orders. Universality gives the map into the opposite algebra, its square fixes all generators, and Theorem \ref{composition} gives the coproduct formula with the factors exchanged. Proposition \ref{permmat} gives classical inversion.
+\end{proof}
+
+The term subantipode in \cite{bs} refers to a weakened inverse identity. Its domain matters.
+
+\begin{prop}\label{subinverse}
+Write $S$ for the preceding anti-isomorphism on $A(X)$, $\Delta_2=(\Delta\otimes id)\Delta$ and $m_3(a\otimes b\otimes c)=abc$ on algebraic tensors. Then
+\[
+ m_3(S\otimes id\otimes S)\Delta_2(u_{ij})=S(u_{ij})
+\]
+on every generator. The identity can fail on a product of two diagonal generators, even for two points.
+\end{prop}
+\begin{proof}
+The left side is $\sum_{kl}u_{ki}u_{kl}u_{jl}$. Row orthogonality forces $l=i$, then column orthogonality forces $k=j$, giving $u_{ji}$. For the product $u_{11}u_{22}$ evaluate everything in the diagonal array of Example \ref{lines}. In each of the three tensor legs only the diagonal indices survive. As $S$ reverses products the left side becomes $(qp)(pq)(qp)=qpqp$, while the right side becomes $qp$. Here $pqp=p/2$, so the first is $qp/2$ and $qp\ne0$. Thus the polynomial extension suggested in \cite{bs} requires a restriction. The program \texttt{borders.py} checks this transpose calculation on the same projections.
+\end{proof}
+
+We can also express the action directly on the points by giving an undefined value its own symbol.
+
+\begin{prop}\label{cemetery}
+Adjoin a point $*$ to $X$. For $a\in X$ let $e_a$ denote the indicator of $a$. Putting
+\[
+ \alpha(e_a)=\sum_{i\in X}e_i\otimes u_{ia},\qquad
+ \alpha(e_*)=e_*\otimes1+\sum_{i\in X}e_i\otimes(1-R_i)
+\]
+defines a unital $*$-homomorphism $C(X\cup\{*\})\to C(X\cup\{*\})\otimes A(X)$. It satisfies $(\alpha\otimes id)\alpha=(id\otimes\Delta)\alpha$. At a classical partial permutation $f$, evaluating these formulas gives pullback by $f^{-1}$ extended by $*$ off its domain and fixing $*$.
+\end{prop}
+\begin{proof}
+At each $i$ the entries of row $i$ and its deficit are orthogonal projections summing to one. At $*$ only the last indicator survives. The displayed images therefore satisfy the point-indicator relations. The two coassociativity expressions on $e_a$ are $\sum_{ik}e_i\otimes u_{ik}\otimes u_{ka}$ after renaming indices. The equation for $e_*$ follows by subtracting from the unit. Finally $u_{ia}(f)=1$ exactly when $f^{-1}(i)=a$.
+\end{proof}
+
+There is a state invariant under every partial symmetry, coming from the empty map.
+
+\begin{prop}
+Evaluation $h_0$ at the zero array satisfies
+\[
+ (h_0\otimes id)\Delta(a)=(id\otimes h_0)\Delta(a)=h_0(a)1
+\]
+for every $a\in A(X)$. It is the unique two-sided invariant state. A compact matrix quantum group quotient in which the fundamental matrix has antipode $u_{ij}\to u_{ji}$ and counit $\delta_{ij}$ factors through $C(G^+(X))$.
+\end{prop}
+\begin{proof}
+The slice maps for the character $h_0$ are homomorphisms, and vanish on generators by the coproduct formula. If $h$ is invariant, computing $(h\otimes h_0)\Delta(a)$ with either of the two invariance identities gives $h(a)=h_0(a)$. For the last assertion the Hopf inverse relations give $uu^t=u^tu=1$. For submagic $u$ their diagonal entries are the row and column sums, so $u$ is magic.
+\end{proof}
+
+The local presentation also tells us which changes of color preserve the quantum semigroup.
+
+\begin{prop}
+An injective relabeling of the colors preserves $A(X)$ with its standard coordinates and coproduct. For simple graphs $X,Y$ on the same labeled set, these coordinate-preserving identifications exist exactly when $Y=X$ or $Y=X^c$.
+\end{prop}
+\begin{proof}
+Relabeling preserves the equalities in Proposition \ref{local} and the coproduct formula of Theorem \ref{composition}. For simple graphs complementation exchanges the two off-diagonal edge statuses and preserves their equality tests, while loop tests still agree. Conversely a coordinate-preserving identification gives the same classical partial maps. Apply Proposition \ref{recover}.
+\end{proof}
+
+The same test works for several relations on the same vertices. We can therefore change the labels without changing the algebra.
+
+\begin{prop}\label{jointcolor}
+For two finite families of color matrices $(d_h^X),(d_h^Y)$ with the same index set, give two ordered pairs the same combined color exactly when their labels agree for every $h$. Preserving the combined color is equivalent to preserving every $d_h$. It also implies preservation of every pointwise function of the labels, including their entrywise products and their color indicators.
+\end{prop}
+\begin{proof}
+In the two-assignment presentation, the combined colors differ exactly when some $d_h$ gives different labels. Any pointwise function taking different values on the two pairs therefore detects a difference in at least one label. In particular we can take the indicator of any one color. This also shows that the linear space of color matrices preserved by a fixed array on $X$ contains the constant matrix and is closed under entrywise products and complex conjugation.
+\end{proof}
+
+The role of the pointwise operation can be seen on two projections.
+
+\begin{thm}
+Put $\gamma_P(e_i)=e_i^{\otimes P}$ and $m_P=\gamma_P^*$ on the standard coordinate basis. For a submagic array $u$ the maps $m_P,\gamma_P$ intertwine its tensor powers with $u$, with source and target dimensions as appropriate. For a scalar matrix $d$ one has $m_Pd^{\otimes P}\gamma_P=d^{\circ P}$, its entrywise $P$-th power. In general the entrywise $P$-th power of $Rdu$ need not equal $Rd^{\circ P}u$.
+\end{thm}
+\begin{proof}
+In $u^{\otimes P}\gamma_P(e_a)$ the product of entries down column $a$ vanishes unless all consecutive row indices agree. The surviving product is $u_{ia}$. The corresponding row calculation gives $m_Pu^{\otimes P}=um_P$. Extracting the constant multi-indices from $d^{\otimes P}$ gives $d_{ij}^P$. With $Rd$ or $dC$ the same extraction yields $R_i d_{ij}^P$ or $d_{ij}^P C_j$, since the scalar commutes with the single repeated projection. For the last assertion use $u=\operatorname{diag}(p_1,p_2)$ with the two projections of Example \ref{lines} and let $d$ be the adjacency matrix of the single edge. Then $(Rdu)_{12}=p_1p_2$, whose square is $p_1p_2/2$, whereas $d^{\circ2}=d$. Proposition \ref{jointcolor} gives color independence without this power identity.
+\end{proof}
+
+In particular one may pass from $d$ to its individual color matrices. Ordinary spectral projections require more care. On the three-point graph with one edge the diagonal entries of $d^2$ are the vertex degrees. A singleton partial map can send the isolated vertex to an endpoint, so preservation of $d$ does not imply preservation of $d^2$.
+
+\section{Walks and representations}\label{walksection}
+
+Write $K=K(Y,X)$. For full quantum permutations, nonvanishing of coordinate monomials is studied in \cite{mcc}. For partial permutations we can separate individual words by matrix coefficients.
+
+\begin{defn}
+A walk word of length $L\geq1$ is a product $p_{v_1}\ldots p_{v_L}$ in which consecutive vertices are adjacent in $K$. A single vertex gives a word of length one. We use the unit as the word of length zero.
+\end{defn}
+
+We first build a representation which picks out one prescribed walk.
+
+\begin{lem}\label{separator}
+For each walk $w$ with $L\geq1$ vertices there is a representation of $A(Y,X)$ on $\mathbb C^L$ with a matrix coefficient taking value $4^{1-L}$ on $w$ and zero on every other walk word of positive length at most $L$.
+\end{lem}
+\begin{proof}
+Write $w=(v_1,\ldots,v_L)$. Choose unit vectors $e_1,\ldots,e_L$ in $\mathbb C^L$ whose Gram matrix is
+\[
+ B_{st}=\begin{cases}
+ 1&s=t,\\
+ 1/4&|s-t|=1,\\
+ 0&|s-t|>1.
+ \end{cases}
+\]
+This real symmetric matrix is positive definite by strict diagonal dominance, so the vectors form a basis. For each vertex $v$ let $P_v$ project onto the span of the $e_s$ with $v_s=v$, and put $P_v=0$ if the vertex does not occur. Occurrences of the same vertex are never consecutive, so their vectors are orthonormal. Occurrences of nonadjacent distinct vertices are never consecutive either. This gives $P_vP_{v'}=0$ whenever required, and hence a representation of $A(Y,X)$.
+
+Let $e_s^\vee$ be the basis dual to the $e_s$ for the inner product. For any nonempty word $(a_1,\ldots,a_M)$, expand each $P_{a_h}$ as the sum of its rank-one projections. The matrix coefficient from $e_L^\vee$ to $e_1^\vee$ is the sum over indices $s_1=1$, $s_M=L$, $v_{s_h}=a_h$, of
+\[
+ B_{s_1s_2}B_{s_2s_3}\ldots B_{s_{M-1}s_M}.
+\]
+A nonzero factor permits a step of at most one. Going from $1$ to $L$ in at most $L-1$ steps forces $M=L$ and $s_h=h$ throughout. Among words of positive length at most $L$, the coefficient is thus $4^{1-L}$ on $w$ and zero on every other word. For $L=1$ this just selects the specified generator.
+\end{proof}
+
+We can now identify the polynomial algebra.
+
+\begin{thm}\label{words}
+The unit and the products $p_{v_1}\ldots p_{v_L}$, one for every walk $(v_1,\ldots,v_L)$ in $K$ and every $L\geq1$, are a complex linear basis for the unital polynomial $*$-algebra generated by the coordinates of $A(Y,X)$. Reversing a walk gives the adjoint of the corresponding word.
+\end{thm}
+\begin{proof}
+Adjacent equal letters collapse by $p_v^2=p_v$, and a product containing successive distinct nonadjacent letters vanishes by Proposition \ref{local}. Thus the walk words and the unit span. For independence, evaluation at the zero array first removes the constant coefficient from any relation. If a term remains, take a walk of maximal length with nonzero coefficient. Lemma \ref{separator} annihilates all the other words and detects this one. Finally $p_v^*=p_v$ gives the adjoint formula.
+\end{proof}
+
+The distinction between a clique and a walk already appears on three points.
+
+\begin{prop}
+On the empty graph on three vertices the assignments $1\to1$, $2\to2$, $1\to3$ give a nonzero three-letter word. No single partial map contains all three.
+\end{prop}
+\begin{proof}
+Consecutive assignments have distinct sources and distinct targets, so Theorem \ref{words} applies. The first and last assignments give two images to the same source.
+\end{proof}
+
+To count the basis words we therefore count walks.
+
+\begin{prop}\label{growth}
+Let $B_K$ be the adjacency matrix of $K$ and $\mathbf{1}$ its all-ones column. The number $b_L$ of basis words of length $L\geq1$ is $\mathbf{1}^tB_K^{L-1}\mathbf{1}$. With $b_0=1$ we have
+\[
+ \sum_{j\geq0}b_j z^j=1+z\mathbf{1}^t(1-zB_K)^{-1}\mathbf{1}
+\]
+as a formal power series. The dimension in degrees at most $L$ is $b_0+\ldots+b_L$.
+\end{prop}
+\begin{proof}
+Walks with $L$ vertices use $L-1$ edges. Summing the entries of the corresponding matrix power counts them, and summing the formal geometric series gives the formula. The dimension assertion is Theorem \ref{words}.
+\end{proof}
+
+For regular graphs one needs only the ordinary vertex degree.
+
+\begin{prop}\label{regular}
+For a simple $D$-regular graph $X$ on $N$ vertices, $K(X,X)$ is regular of degree $E=D^2+(N-1-D)^2$. Its word counts are $b_1=N^2$ and $b_L=N^2E^{L-1}$ for $L\geq2$.
+\end{prop}
+\begin{proof}
+After an assignment $(i,a)$ the new source and target must either both be neighbors of their respective predecessors or both be nonneighbors. Excluding $a$ and $i$ gives $D^2$ choices in the first case and $(N-1-D)^2$ in the second. There are $N^2$ choices for the first letter and $E$ for each further letter.
+\end{proof}
+
+The walk construction separates polynomials. To compute their universal norms we use the finite-dimensional span of all words of bounded degree applied to one vector.
+
+\begin{thm}\label{norm}
+Let $f$ be a polynomial of degree at most $L$ in $A(Y,X)$ and let $D_L=\sum_{h=0}^L b_h$. There is a unital representation $\pi$ of $A(Y,X)$ on a Hilbert space of dimension at most $D_L$ for which
+\[
+ \|\pi(f)\|=\|f\|.
+\]
+In particular, finite-dimensional representations separate the elements of $A(Y,X)$.
+\end{thm}
+\begin{proof}
+Choose a state taking $f^*f$ to $\|f\|^2$ and represent it by a unit vector $\xi$ in its GNS representation. Let $E_j$ be the span of $\xi$ and the vectors obtained by applying all words of degree at most $j$ to $\xi$. By Theorem \ref{words} we have $\dim E_L\leq D_L$. Write $P_v$ for the represented projections and $Q_v$ for the orthogonal projection in $E_L$ onto $E_L\cap\operatorname{ran}P_v$. Orthogonality of two ranges of the $P_v$ implies the same orthogonality for the $Q_v$. Hence the $Q_v$ define a unital representation on $E_L$.
+
+For $L\geq1$ and $\eta\in E_{L-1}$ we have $P_v\eta\in E_L\cap\operatorname{ran}P_v$. The difference $\eta-P_v\eta$ is orthogonal to that intersection, so $Q_v\eta=P_v\eta$. Induction, starting with the rightmost letter, shows $f(Q)\xi=f(P)\xi$. This gives the norm equality. Constants give the case $L=0$ using the zero array. The direct sum of finite-dimensional representations is isometric on a dense algebra, hence on its completion.
+\end{proof}
+
+The empty graph gives an explicit dimension bound.
+
+\begin{prop}
+For $C(\widetilde S_N^+)$ the dimension bound in Theorem \ref{norm} is
+\[
+ D_L=1+N^2\sum_{j=0}^{L-1}(N-1)^{2j}
+\]
+for degree at most $L$, with the empty sum understood as zero.
+\end{prop}
+\begin{proof}
+Apply Proposition \ref{regular} with $D=0$ and sum the word counts, including the unit.
+\end{proof}
+
+We shall also need to pass between a graph and its induced subgraphs.
+
+\begin{prop}\label{induced}
+If $X'\subset X$ and $Y'\subset Y$ carry their induced colors, sending each retained coordinate to the corresponding coordinate of $A(Y,X)$ gives an isometric unital inclusion of $A(Y',X')$. Killing the other coordinates gives a retraction.
+\end{prop}
+\begin{proof}
+The retained assignments induce $K(Y',X')$ inside $K(Y,X)$. Thus the larger coordinates satisfy the smaller presentation, and putting zero at every other assignment satisfies the larger presentation. The composite on $A(Y',X')$ fixes its generators, so the inclusion is isometric. For the coproduct on an ambient graph, the sum in Theorem \ref{composition} can still pass through a vertex outside the induced subgraph.
+\end{proof}
+
+The programs \texttt{association.py} and \texttt{walks.py} count cliques and walks for one or two color matrices and verify the separating coefficients of Lemma \ref{separator} in exact arithmetic.
+
+For a countable graph it is convenient to begin with the relations involving two individual assignments.
+
+\begin{defn}
+For a countable colored graph $X$, let $A=A(X)$ be the universal unital $C^*$-algebra on projections $p_v$ indexed by allowed assignments, with $p_vp_w=0$ for distinct nonadjacent vertices of $K(X,X)$. As before, $u_{ia}$ denotes $p_{(i,a)}$ at an allowed assignment and zero elsewhere.
+\end{defn}
+
+Every polynomial in these coordinates uses only finitely many vertices.
+
+\begin{prop}
+The algebras of the finite induced subgraphs embed isometrically in $A$ and their directed union is dense. Each coordinate polynomial in $A$ attains its norm in a finite-dimensional representation of $A$.
+\end{prop}
+\begin{proof}
+The maps of Proposition \ref{induced} are defined by the two-assignment relations and work for countably many generators as well. A polynomial belongs to the finite induced graph on all its sources and targets. Apply Theorem \ref{norm} there, then extend the representation by zero on all other assignments. The union contains every coordinate and is therefore dense.
+\end{proof}
+
+The coproduct requires a separate convergence argument.
+
+\begin{thm}\label{infinite}
+For a countable colored graph, the coordinate formula
+\[
+ \Delta(u_{ia})=\sum_k u_{ik}\otimes u_{ka}
+\]
+converges in $A\otimes_{min}A$ for every $i,a$ precisely when every class of vertices of equal diagonal color is finite. In this case it defines a unital coassociative coproduct. For an arbitrary countable coloring the same formula defines a normal unital coassociative homomorphism from $A^{**}$ to $A^{**}\,\overline\otimes\,A^{**}$, using strong operator sums.
+\end{thm}
+\begin{proof}
+The summands for fixed $i,a$ are mutually orthogonal projections. A nonzero summand requires $d_{ii}=d_{kk}=d_{aa}$. Thus finite classes give finite sums in each coordinate, and the calculation of Theorem \ref{composition} applies. For an infinite class choose $i=a$ in that class. Every $k$ in it gives a nonzero summand, as evaluation on the singleton maps $k\to i$ and $i\to k$ shows. Its norm is one, excluding norm convergence.
+
+Put $M=A^{**}$. In $M\,\overline\otimes\,M$ the partial sums increase to projections in the strong operator topology. The resulting array is submagic and preserves the colors. Indeed, for two finite partial sums of entries whose product must vanish, each summand of the product vanishes by the same intermediate-index test as in Theorem \ref{composition}. Strong multiplication is continuous on bounded sets for two strongly convergent nets. Universality now gives a homomorphism on $A$, which extends uniquely to a normal homomorphism on $M$. Both iterates on a generator sum the mutually orthogonal projections $u_{ik}\otimes u_{kl}\otimes u_{la}$ over $k,l$. Normality permits the sums to be taken in either order, giving coassociativity.
+\end{proof}
+
+We can see the obstruction on classical partial maps.
+
+\begin{prop}
+If a diagonal color class is infinite, composition of classical partial automorphisms is discontinuous at the pair of empty maps in the topology of coordinatewise convergence. This applies to every infinite simple graph.
+\end{prop}
+\begin{proof}
+Fix $i$ in the class and let $k$ run through a sequence of distinct vertices of that class. The singleton maps $i\to k$ and $k\to i$ both converge to the empty map. Their composition in this order is always the partial identity at $i$. A simple graph has one diagonal color class.
+\end{proof}
+
+An infinite graph can carry both compact and discrete groups of symmetries. We ask how to recover the full symmetries from its partial permutations. Take a countable, locally finite simple graph $X$ with adjacency matrix $D$. Ordinary commutation $Du=uD$ means
+\[
+ \sum_{j\sim i}u_{ja}=\sum_{b\sim a}u_{ib}
+\]
+for every $i,a$. These sums are finite, even when the vertex degrees are unbounded.
+
+\begin{thm}\label{globalsupport}
+Let $X$ be connected and let $u$ be a submagic matrix of projections on a Hilbert space $H$ satisfying $Du=uD$. There is a single projection $e$ such that
+\[
+ \sum_a u_{ia}=e=\sum_j u_{jb}
+\]
+strongly for every $i,b$. On $eH$ the array is a full quantum automorphism of $X$, and on $(1-e)H$ it is zero.
+\end{thm}
+\begin{proof}
+Write $R_i$ for the strong sum of row $i$, the projection onto the closed span of the ranges in that row. If $j\sim i$, then for every $b$ we have
+\[
+ u_{jb}\ \leq\ \sum_{k\sim i}u_{kb}
+       \ =\ \sum_{a\sim b}u_{ia}\ \leq\ R_i .
+\]
+Thus $R_j\leq R_i$. Exchanging the two neighbors gives equality, and following paths gives the same support for every row. The transpose satisfies the same adjacency equation, since $D$ is symmetric, so the column supports also agree. Both common supports are the projection onto the closed span of all the entry ranges. Each $u_{ia}$ acts on this space and vanishes on its orthogonal complement. On this space the row and column sums are the identity and the adjacency equation still holds.
+\end{proof}
+
+Let $B_X$ be the quotient of $A(X)$ by the closed ideal generated by the entries of $Du-uD$. The empty map defines a character $\epsilon_0$ on $B_X$ by sending all entries to zero. For a connected locally finite graph we write $G^+(X)$ for the locally compact quantum automorphism group constructed in \cite{rv}.
+
+\begin{cor}\label{fullgraph}
+For a connected locally finite graph $X$ there is a canonical isomorphism
+\[
+ \ker(\epsilon_0:B_X\to\mathbb C)\ \simeq\ C_0^u(G^+(X))
+\]
+sending each coordinate to the corresponding coordinate in the universal $C^*$-algebra of $G^+(X)$.
+\end{cor}
+\begin{proof}
+The kernel is the norm closure of the algebra spanned by nonempty words in the $u_{ia}$. We check the strict row and column sums in the universal presentation of \cite{rv}. Fix a generator $u_{jb}$ and a row $i$ at distance $m$ from $j$. Writing $B_m(b)$ for the ball of radius $m$ about $b$, we have
+\[
+ u_{jb}\leq \sum_{a\in B_m(b)}u_{ia}.
+\]
+Indeed, the inequality in the proof of Theorem \ref{globalsupport} gives one step along a path. At each further step every summand is dominated by the sum in the next row over the enlarged ball. The old summands are orthogonal, so their sum is dominated as well. Each ball is finite. Hence a sufficiently large finite row sum fixes $u_{jb}$ on both sides. To fix a word on the left use its first letter, and on the right use its last letter. The transpose gives the same assertion for the columns. This is strict convergence on the algebra of words.
+
+Conversely the generators $v_{ia}$ in the presentation of \cite{rv} satisfy the relations of $A(X)$. Indeed, multiplying the $(i,b)$ adjacency equation on the left by $v_{ia}$ and on the right by $v_{jb}$ gives $D_{ij}v_{ia}v_{jb}=D_{ab}v_{ia}v_{jb}$. Thus the strict sums give a homomorphism from the universal algebra of \cite{rv} to the algebra of words in $\ker\epsilon_0$. It extends to the universal completion. In the other direction the assignment $u_{ia}\to v_{ia}$ gives a map on $B_X$ after adjoining a unit to the target, and it sends $\ker\epsilon_0$ into $C_0^u(G^+(X))$. Both composites fix the generators. The Haar weights and the reduced completion are supplied by \cite{rv}.
+\end{proof}
+
+A single infinite graph can exhibit both kinds of symmetry explicitly.
+
+\begin{ex}
+Attach four leaves to each vertex of the two-sided path on $\mathbb Z$. Label the path vertices $(n,0)$ and their leaves $(n,1),\ldots,(n,4)$. Translation shifts $n$ and preserves the second label. The compact quantum group $S_4^+$ fixes each path vertex and permutes the four leaves there by the same magic matrix $v$. The actions commute and give a faithful action of $\mathbb Z\times S_4^+$. Indeed, at translation $h$ the coefficient from $(n,b)$ to $(m,a)$ is zero unless $m=n+h$. In that case it is the $(a,b)$ entry of $diag(1,v)$. The path-to-path coefficients give the point masses $\delta_h$, and the leaf-to-leaf coefficients give $\delta_h\otimes v_{ab}$. These generate $C_0(\mathbb Z)\otimes_{min}C(S_4^+)$.
+\end{ex}
+
+For a disconnected graph we can follow paths inside each component. Recall that a quantum isomorphism from $X_s$ to $X_r$ on a nonzero Hilbert space is a rectangular array of projections, orthogonal in each row and column, with all row and column sums strongly equal to the identity and satisfying $D_rv=vD_s$ \cite{rv}.
+
+\begin{thm}\label{componentsupport}
+Let $X$ be a countable locally finite simple graph with connected components $X_r$. The submagic matrices on $H$ satisfying $Du=uD$ are obtained by taking a submagic matrix $(e_{rs})$ of projections on $H$ indexed by the components and, whenever $e_{rs}\ne0$, a quantum isomorphism from $X_s$ to $X_r$ on $e_{rs}H$. Each such block is extended by zero on $(1-e_{rs})H$. The array $u$ determines the projections $e_{rs}$ uniquely.
+\end{thm}
+\begin{proof}
+Write $v$ for the block with rows in $X_r$ and columns in $X_s$. Its equation is $D_rv=vD_s$. The row argument of Theorem \ref{globalsupport} follows paths in $X_r$, and the column argument follows paths in $X_s$. The two supports both project onto the closed span of the ranges in the block. Thus for any $i\in X_r$ and $a\in X_s$,
+\[
+ e_{rs}=\sum_{b\in X_s}u_{ib}=\sum_{j\in X_r}u_{ja}
+\]
+in the strong topology. For fixed $r$, use the same row $i$ for all $s$. Disjoint sets of columns give orthogonal supports. For fixed $s$, use the same column $a$ to get orthogonality over $r$. This gives the submagic matrix on the components and proves uniqueness. On each nonzero support the block meets the definition of a quantum isomorphism.
+
+Conversely, orthogonality inside a block comes from its quantum isomorphism. Entries in different blocks sharing a row or a column lie under orthogonal component projections. Thus the assembled array is submagic, and ordinary adjacency commutation holds block by block.
+\end{proof}
+
+For an edgeless graph each component is one vertex. The last theorem then gives the entire submagic matrix on the vertex set. For the discrete quantum permutation group of an infinite set see \cite{voigt}. The program \texttt{components.py} checks the block description on finite graphs.
+
+\section{Small graphs and cycles}\label{cycle}
+
+Two constructions illustrate the difference between preserving individual colors and commuting with the adjacency operator.
+
+\begin{prop}\label{blocks}
+For a disjoint union of colored graphs with a constant cross-block color, the block-preserving quotient of its coordinate algebra is the unital free product of the partial symmetry algebras of the blocks. For the complete loopless graph on $N\geq2$ vertices all submagic matrices preserve the colors. Imposing ordinary adjacency commutation on them instead gives $\mathbb C\oplus C(S_N^+)$.
+\end{prop}
+\begin{proof}
+Kill all assignments between distinct blocks. The surviving generators satisfy exactly the relations of their respective blocks, since all cross-block pairs have the same color. This is the free-product presentation. A block diagonal array is closed under the coproduct and contains the identity, giving the claimed quantum subsemigroup. For the complete graph the compressed test just distinguishes equal from unequal indices, which submagic orthogonality already ensures. For ordinary commutation write $d=J-1$ with $J$ the all-ones matrix. The equality $Ju=uJ$ says that every row and column sum is one common projection $e$. It is central since it acts as the identity on every generator on either side. Its corner carries the universal magic matrix with unit $e$, and the complementary corner carries the zero array. Both are realized, giving the displayed direct sum. Classically these are the permutations and the empty map.
+\end{proof}
+
+For full quantum automorphisms, the usual adjacency equation gives criteria for Cayley graphs of finite abelian groups to have only classical symmetries \cite{cayley}. Let us compare it with the compressed equation.
+
+\begin{prop}
+For a graph $X$, imposing that $u$ is magic in $A(X)$ gives $C(G^+(X))$. On a submagic matrix the relation $d^Xu=ud^X$ implies the compressed relation, and the converse fails already for a complete loopless graph on $N\geq2$ vertices.
+\end{prop}
+\begin{proof}
+A magic matrix has $R=C=1$, so the defining equation is the usual commutation relation for $G^+(X)$. In general one may multiply that relation by $R,C$. For the converse take the partial identity at vertex $1$. Its matrix is $e_{11}$, and the $(1,2)$ entries of $e_{11}d^X$ and $d^Xe_{11}$ are $1$ and $0$.
+\end{proof}
+
+The stronger equation also has a direct classical interpretation.
+
+\begin{prop}
+On a finite simple graph the scalar arrays with $du=ud$ are exactly the isomorphisms between unions of connected components, extended by zero. In general the submagic quotient by $du=ud$ still carries the coordinate coproduct.
+\end{prop}
+\begin{proof}
+Since $d=d^*$, ordinary commutation implies commutation with $u^*$ as well, hence with the diagonal projections $u^*u$ and $uu^*$ marking the domain and image of a scalar map. An indicator projection commutes with $d$ exactly when no edge crosses its subset. The two induced adjacency matrices must then be intertwined by the bijection, and the converse follows by extending by zero. In the quantum quotient place the two matrices in separate tensor factors. Each commutes with the scalar matrix $d$, so their matrix product commutes with it as well. Proposition \ref{tensorcompose} gives the coproduct.
+\end{proof}
+
+We now compute the algebras on two vertices. Write $F$ for the universal unital $C^*$-algebra on two projections and $\epsilon:F\to\mathbb C$ for the character taking both to zero.
+
+\begin{thm}\label{two}
+For a colored directed graph on two points the coordinate algebra and number of classical partial automorphisms are as in the following table, with $F\times_\epsilon F=\{(x,y):\epsilon(x)=\epsilon(y)\}$.
+\[
+\begin{array}{lcc}
+\toprule
+ \text{Color condition} & A(X) & |\widetilde G(X)|\\
+\midrule
+ d_{11}\ne d_{22} & F & 4\\
+ d_{11}=d_{22},\ d_{12}\ne d_{21} & F\oplus\mathbb C\oplus\mathbb C & 6\\
+ d_{11}=d_{22},\ d_{12}=d_{21} & F\times_\epsilon F & 7\\
+\bottomrule
+\end{array}
+\]
+In the last row the coordinate algebra is $C(\widetilde S_2^+)$.
+\end{thm}
+\begin{proof}
+Write $p=u_{11}$, $s=u_{22}$, $q=u_{12}$, $r=u_{21}$. Each of $p,s$ annihilates each of $q,r$ by submagic orthogonality.
+
+Distinct diagonal colors force $q=r=0$ and leave $p,s$ free. With equal diagonal colors, distinct off-diagonal colors force $qr=0$. Now $q$ and $r$ are orthogonal central projections since they annihilate $p,s$. Their corners are scalar, and the complementary corner is $F$. When the off-diagonal colors coincide, $q,r$ are free as well. The closed nonunital algebras generated by $p,s$ and by $q,r$ annihilate each other. Each identifies with $\ker\epsilon$ by universality, using a representation which kills the other pair. Adjoining the common unit gives the indicated fiber product. In the last case there are the empty map, four rank-one maps and two permutations. The middle case excludes the transposition and the first case retains just the partial identities.
+\end{proof}
+
+The two-point algebra admits a concrete interval model, useful when checking relations.
+
+\begin{prop}
+The unital algebra $F$ on two projections is the algebra of continuous $M_2(\mathbb C)$-valued functions on $[0,1]$ with diagonal endpoint values. Its generators are
+\[
+ P(t)=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+ Q(t)=\begin{pmatrix}t&\sqrt{t(1-t)}\\\sqrt{t(1-t)}&1-t\end{pmatrix}.
+\]
+The character killing both generators reads the lower right entry at $t=1$. For the empty graph on two points, the algebra therefore consists of pairs of such functions with the same lower right entry at $t=1$.
+\end{prop}
+\begin{proof}
+The central element $1-(P-Q)^2$ equals $t1$ in the display. The diagonal matrix units $P,1-P$ and the off-diagonal entries of $Q$ therefore generate every diagonal continuous function and all off-diagonal functions vanishing at the endpoints, by uniform approximation. For faithfulness, in any irreducible representation of two abstract projections $p,q$ the same central element is scalar $t$, with $0\leq t\leq1$. Centrality follows by multiplication, and the bounds follow from $-1\leq p-q\leq1$. Relative to $p$, the diagonal blocks of $q$ are $tp$ and $(1-t)(1-p)$. From $q^2=q$ its off-diagonal block divided by $\sqrt{t(1-t)}$ is a unitary between the two summands for $0<t<1$. The representation is then a multiple of the displayed one. At an endpoint the off-diagonal block vanishes, and the irreducible representations are the scalar endpoint evaluations. This proves faithfulness. The last assertion is Theorem \ref{two}, since the two components of its fiber product have the same scalar part. In the interval model the kernel is nonunital: its unit would have to equal the identity on the open interval and have lower right entry zero at $1$.
+\end{proof}
+
+In this model the two-point coproduct can be read directly on the two summands. With $u_{11}=a,u_{12}=b,u_{21}=c,u_{22}=d$, it sends $a$ to $a\otimes a+b\otimes c$ and $b$ to $a\otimes b+b\otimes d$. Interchanging the two point labels gives the other two formulas. Thus even the product of two off-diagonal assignments can contribute to a diagonal entry.
+
+The oriented triangle has a particularly short presentation.
+
+\begin{prop}
+For the oriented triangle on $\mathbb Z_3$, the association graph is the disjoint union of three complete graphs on three vertices, one per displacement. For each shift $h=0,1,2$, take the three projections corresponding to $a\to a+h$. Within a shift these projections satisfy only the projection relations. Projections from different shifts have product zero. These relations present the unital algebra $A(X)$. The oriented and unoriented triangles have $22$ and $34$ classical partial symmetries, respectively.
+\end{prop}
+\begin{proof}
+For distinct assignments a pair preserves the directed edge status in both orders exactly when the two displacements are equal. Thus projections in the same displacement class are arbitrary and projections from different classes annihilate each other. Write $B$ for the universal unital $C^*$-algebra on three projections, and let $\epsilon:B\to\mathbb C$ send the three projections to zero. Then
+\[
+ A(X)\simeq\{(x_0,x_1,x_2)\in B^3:\epsilon(x_0)=\epsilon(x_1)=\epsilon(x_2)\}.
+\]
+Indeed, each shift generates a copy of $\ker\epsilon$ without the unit: setting the other six projections to zero gives a left inverse on that copy. The three copies annihilate one another, and adjoining the common unit gives exactly the triples in the display. The cliques are the empty clique and the nonempty subsets in each of three triangles, giving $1+3(2^3-1)=22$. The unoriented triangle is complete, so all $34$ partial permutations occur.
+\end{proof}
+
+For the graph with the single edge $\{2,3\}$, two assignments with distinct sources and targets give a forbidden product exactly when just one of their source and target pairs equals $\{2,3\}$. Together with the submagic equations this is its full presentation by Proposition \ref{local}. We can now count its walks and its partial maps.
+
+\begin{ex}
+For the graph on three vertices having $\{2,3\}$ as its only edge, the numbers of partial automorphisms by increasing rank are $1,9,10,2$. The numbers of walk words of lengths one and two are $9,20$, respectively. All nine assignments are allowed. If $D_i,D_a$ are the ordinary degrees, then $(i,a)$ has $D_i D_a+(2-D_i)(2-D_a)$ possible successors. The isolated-to-isolated assignment has four successors and each of the other eight has two, giving $20$. Each rank-two map corresponds to two orderings of its adjacent assignments, so there are ten. At full rank we may fix or interchange the two endpoints of the edge.
+\end{ex}
+
+In the oriented cycle on $\mathbb Z_N$ the arrows are $i\to i+1$. For $N=2$ these are the two orientations of the single edge, so forgetting orientation gives the same adjacency matrix. We now take $N\geq3$.
+
+\begin{samepage}
+\begin{defn}
+The run profile $M=(M_j)_{j\geq1}$ of a proper nonempty subset of a cycle counts its maximal strings of consecutive vertices, with $M_j$ strings of $j$ vertices each. We write $R=\sum_j jM_j$ for the number of vertices and $P=\sum_j M_j$ for the number of runs. A profile is feasible when it occurs for some subset.
+\end{defn}
+\end{samepage}
+
+On each run an oriented isomorphism is a translation, and an unoriented one is a translation possibly followed by reversal. The image runs must be separated by gaps, since vertices from different runs are nonadjacent. This gives an explicit description of the maps counted below.
+
+\begin{samepage}
+\begin{prop}\label{cyclecount}
+A profile of integers $M_j\geq0$ is feasible precisely when $1\leq R<N$ and $1\leq P\leq N-R$. For such a profile the number of vertex sets is
+\[
+ b_N(M)=\frac{N(P-1)!}{\prod_j M_j!}\binom{N-R-1}{P-1}.
+\]
+The numbers of partial automorphisms of the oriented and unoriented cycles are respectively
+\[
+ 1+N+\sum_M b_N(M)^2\prod_j M_j!,
+ \qquad
+ 1+2N+\sum_M b_N(M)^2\,2^{P-M_1}\prod_j M_j!,
+\]
+where the sums run over all feasible profiles. Counting nonempty subsets only by their number $P$ of cyclic components gives
+\[
+ K_P(N)=2\binom{N}{2P}+\delta_{P1}
+\]
+for $1\leq P\leq\lfloor N/2\rfloor$, with the full cycle counted as one component.
+\end{prop}
+\end{samepage}
+\begin{proof}
+Each run requires a positive gap. Conversely, when $P\leq N-R$ the gaps can be chosen positive and placed alternately with the $P$ specified runs around the cycle.
+
+Mark the first vertex of one run. There are $N$ choices for this vertex, $P!/\prod_j M_j!$ orders for the run lengths, and $\binom{N-R-1}{P-1}$ compositions of the remaining vertices into $P$ positive gaps. Divide by $P$ to forget the mark. Two induced subgraphs are isomorphic precisely when their profiles agree. Between two such subsets one can permute the equal-length paths in $\prod_j M_j!$ ways. A directed path permits one orientation, and an unoriented path of length at least two permits two. Add the empty map and the $N$ rotations or $2N$ dihedral symmetries on a full domain.
+
+For the last formula, a proper nonempty subset with $P$ runs changes membership at exactly $2P$ cycle edges. Choose these edges and decide whether vertex $1$ belongs to the subset. Traversing the cycle then determines every other vertex, and the even number of changes ensures consistency. The full subset contributes one more at $P=1$, giving $K_1(N)=N^2-N+1$.
+\end{proof}
+
+For the square we can see explicitly the contribution of the two opposite vertices.
+
+\begin{samepage}
+\begin{ex}
+For the oriented square the counts by rank are $(1,16,24,16,4)$, with total $61$. For the unoriented square they are $(1,16,40,32,8)$, with total $97$. The four adjacent pairs contribute $4^2$ oriented rank-two maps or $2\times4^2$ unoriented maps. The two opposite pairs contribute $2\times2^2=8$ in either case. In particular each opposite domain has only four ordered images, since adjacent images would destroy its nonedge. Each of the four rank-three domains is a path, giving $4^2$ or $2\times4^2$ maps. The remaining counts follow from Proposition \ref{cyclecount}.
+\end{ex}
+\end{samepage}
+
+We have counted maps preserving induced adjacency. For partial isometries of the ambient cycle distance, see \cite{fp}. The corresponding quantum word counts are as follows.
+
+\begin{prop}
+For $N\geq3$, the numbers of basis words with $L$ letters are
+\[
+ b_L(C_N)=N^2(4+(N-3)^2)^{L-1},\qquad
+ b_L(C_N^{\to})=N^2(2+(N-3)^2)^{L-1}
+\]
+for the unoriented and oriented cycles, respectively, and every $L\geq1$.
+\end{prop}
+\begin{proof}
+Proposition \ref{regular} with $D=2$ gives the first count. In the oriented cycle the other vertices are a successor, a predecessor, and $N-3$ vertices joined by neither arrow. Matching like types gives $2+(N-3)^2$ choices at each step. For the square the two-letter counts are $80$ and $48$. Each rank-two map gives two orders, whereas a three-letter walk tests only successive assignments.
+\end{proof}
+
+The program \texttt{cycles.py} checks the cycle counts by direct enumeration. We now forget both the coordinates of $A(X)$ and its coproduct. The characters still form a finite set, but at first sight there is no way to tell which of them come from maps of a given rank.
+
+\begin{thm}\label{abstractranks}
+Let $A=A(X)$ for a finite colored directed graph $X$. On the character set of $A$, each projection $q\in A$ defines the function $f_q(\chi)=\chi(q)$. Let $V_R$ be the real span of products of at most $R$ such functions, including the constant $1$, and put $V_{-1}=0$. Then
+\[
+ \dim V_R-\dim V_{R-1}
+ =\#\{f\in\widetilde G(X):\operatorname{rank}(f)=R\}
+\]
+for every $R\geq0$. In particular, the abstract algebra determines the number of vertices of $X$.
+\end{thm}
+\begin{proof}
+Write $K=K(X,X)$. By Proposition \ref{cliques} the characters are indexed by cliques $C$ of $K$, including the empty clique. The coordinate projection $p_v$ gives the function $x_v(C)$ equal to $1$ when $v\in C$ and $0$ otherwise. We first show that $V_1$ is spanned by $1$ and the $x_v$.
+
+Fix $v\in C$. In the two-dimensional representation $\chi_C\oplus\chi_\emptyset$, all projections with labels in $C$ are the projection onto the first coordinate line. Rotate just the line for $v$ until it is the second coordinate line. This gives a continuous path of representations: every label outside $C$ stays zero, and labels inside a clique impose no orthogonality relations on one another. At the other end we have $\chi_{C\setminus\{v\}}\oplus\chi_{\{v\}}$. For any projection $q\in A$ its image varies continuously and hence has constant rank along the path. Thus
+\[
+ f_q(C)+f_q(\emptyset)=f_q(C\setminus\{v\})+f_q(\{v\}),
+\]
+where we write $f_q(C)$ for $f_q(\chi_C)$. Removing one vertex at a time gives $f_q(C)=f_q(\emptyset)+\sum_{v\in C}(f_q(\{v\})-f_q(\emptyset))$, as claimed.
+
+Now $x_v^2=x_v$, and a product of the $x_v$ is zero unless its labels form a clique $S$. For a clique it is the indicator of the condition $S\subset C$. These indicators are linearly independent: order the cliques by increasing size and evaluate on them in that order. The resulting inclusion matrix is triangular with diagonal entries one. Those with $|S|\leq R$ therefore form a basis of $V_R$. Taking successive dimensions counts the cliques of size $R$, which are exactly the maps of rank $R$. The largest such $R$ is the number of vertices, since the identity has full domain.
+\end{proof}
+
+For the oriented square the successive dimensions are $1,17,41,57,61$. Their differences recover the rank counts above. In fact the same projection values tell us which assignments can occur together.
+
+\begin{thm}\label{abstractgraph}
+The abstract unital $C^*$-algebra $A(Y,X)$ determines the association graph $K(Y,X)$ up to graph isomorphism for any finite colored directed graphs $X,Y$. Two such algebras are isomorphic exactly when their association graphs are isomorphic.
+\end{thm}
+\begin{proof}
+Write $K=K(Y,X)$ and let $H$ be its complement. A character is now indexed by an independent set $S$ of $H$, that is, a set containing no edge. The argument with projections in Theorem \ref{abstractranks} applies verbatim to $K(Y,X)$. Thus two unordered pairs of characters have the same sum of values on every projection precisely when the sums of their indicator vectors agree.
+
+Make a graph $J$ on the characters by joining two distinct characters when their sum on projections determines their unordered pair uniquely. For two independent sets $S,T$, the sum of their indicator vectors records their intersection and their union. To recover a pair with that sum one must divide the vertices of the symmetric difference $S\mathbin{\triangle}T$ into two independent sets. Each connected component admits exactly two choices, obtained by exchanging its two sides. It follows that $S,T$ are joined in $J$ precisely when their symmetric difference induces a connected graph in $H$. This is also the adjacency criterion for the polytope of independent sets in \cite{chvatal}.
+
+The neighbors of $\emptyset$ in $J$ are exactly the singletons, and the graph they induce is $H$. To recover $H$ without knowing which character is $\emptyset$, take any vertex of $J$ of minimum degree. We show that it has the same neighborhood up to isomorphism.
+
+Write $D$ for the number of vertices of $H$. Every independent set $S$ has at least $D$ neighbors in $J$. We can either remove one vertex of $S$, or insert one vertex outside $S$ and remove all its neighbors in $S$. In the latter case the changed vertices form a star, possibly just its center. The empty set has degree $D$. Suppose now that $S$ has this minimum degree. If some $s\in S$ had two neighbors $u,v$ in $H$ which were not joined to each other, we could insert both and remove their neighbors in $S$. The changed vertices would form a connected graph through $s$, giving one more neighbor of $S$ in $J$. Hence the neighbors of each $s\in S$ are pairwise adjacent in $H$.
+
+For such an $s$ let $B$ be its neighbor set in $H$. An independent set contains at most one vertex of $B\cup\{s\}$. The affine substitution
+\[
+ x_s\ \to\ 1-x_s-\sum_{u\in B}x_u
+\]
+fixes all other coordinates and permutes the indicator vectors: it toggles membership of $s$ whenever no neighbor of $s$ is present. This involution preserves equality of pair sums, so it gives an automorphism of $J$. Applying it for each $s\in S$ carries $S$ to $\emptyset$. We can therefore recover $H$ as the graph induced on the neighbors of any vertex of minimum degree in $J$, and then recover $K$ by taking its complement. Conversely, an isomorphism of association graphs identifies the generators and relations of Proposition \ref{local}.
+\end{proof}
+
+The program \texttt{reconstruct.py} checks this reconstruction on all labeled graphs with at most five vertices. The association graph is the invariant here. For example, a simple graph and its complement have the same assignment relations, so the algebra need not distinguish even an empty graph from a complete one.
+
+\section{Diagonal algebras}\label{diagonalsection}
+
+A partial permutation has a set of fixed points. Section \ref{ranksection} counted them by summing the diagonal entries. Following the configuration-space construction of \cite{qp}, we now keep track of which points are fixed. We first allow all ranks, and then prescribe the rank.
+
+\begin{defn}\label{diagdef}
+For a quantum semigroup $G$ of partial permutations of $\{1,\ldots,N\}$, put $p_i=u_{ii}$. Its diagonal algebra is
+\[
+ D(G)=C^*(1,p_1,\ldots,p_N)\subset C(G).
+\]
+The quantum space having $D(G)$ as its algebra of functions is the configuration space of $G$.
+\end{defn}
+
+For classical partial permutations this space can be read directly from the action.
+
+\begin{prop}\label{fixed}
+Let $G$ be a semigroup of partial permutations on a finite set. Its configuration space is the set of distinct fixed-point sets of its elements. For the partial automorphisms of any finite colored graph $X$ it is the entire power set of the vertices.
+\end{prop}
+\begin{proof}
+Two maps give the same values on all diagonal coordinates precisely when they fix the same vertices. The coordinates separate the resulting fixed-point sets, and therefore generate all functions on this finite set. For $G=\widetilde G(X)$ the partial identity of each subset has that subset as its fixed-point set.
+\end{proof}
+
+Write $F_M=C^*(e_1,\ldots,e_M)$ for the universal unital algebra on $M$ projections. Its representations allow arbitrary projections, including zero and the identity. Equivalently $F_M=C^*(\mathbb Z_2^{*M})$, with the involutions given by $2e_i-1$.
+
+\begin{thm}\label{partialdiag}
+For every colored directed graph $X$ on $N$ vertices, $D(\widetilde G^+(X))$ is canonically $F_N$ and is a retract of $A(X)$. More generally, for a partial isomorphism $f:I\to J$ from $X$ to $Y$, the coordinates $u_{f(a),a}$, $a\in I$, freely generate a copy of $F_{|I|}$ in $A(Y,X)$.
+\end{thm}
+\begin{proof}
+Place one arbitrary projection at each assignment of $f$ and zero elsewhere. There is at most one nonzero entry in each row and column. Two assignments of $f$ preserve their colors, so the array satisfies Proposition \ref{local}. Using the universal projections gives a left inverse to the map from $F_{|I|}$ onto the algebra of the specified entries. Take $f$ to be the identity on $X$ to obtain the first assertion. In particular every graph with at least two vertices admits noncommuting quantum partial symmetries.
+\end{proof}
+
+The diagonal alone remembers only the number of vertices. Composition with a single partial map already recovers the other coordinates. This uses the original coordinate basis, which can also be varied in the maximal-torus construction of \cite{tori}.
+
+\begin{prop}
+For a finite colored graph $X$, the right translates of the fixed-point projections by classical partial automorphisms generate $A(X)$. The same holds for left translates.
+\end{prop}
+\begin{proof}
+For an allowed assignment $a\to i$, let $\chi_f$ be evaluation at the singleton map $f:i\to a$. The reversed assignment is allowed because $i$ and $a$ have the same vertex color. Slicing the coproducts gives
+\[
+ (id\otimes\chi_f)\Delta(p_i)=u_{ia},
+ \qquad
+ (\chi_f\otimes id)\Delta(p_a)=u_{ia}.
+\]
+Indeed, each sum has a single surviving intermediate vertex. Every nonzero coordinate is obtained in this way.
+\end{proof}
+
+We now prescribe the rank in the universal algebra of partial permutations. A state measures the probability of fixing each marked point, as in \cite{mcstate}.
+
+\begin{defn}
+For $0\leq R\leq N$ let
+\[
+ A_{N,R}=C(\widetilde S_N^+)/\langle\kappa-R\,1\rangle,\qquad
+ D_{N,R}=C^*(1,p_1,\ldots,p_N)\subset A_{N,R},
+\]
+where $\kappa=\sum_{ia}u_{ia}$ and $p_i$ is the image of $u_{ii}$. Proposition \ref{rankmodel} gives a representation of this quotient. Here we use its universal norm.
+\end{defn}
+
+We begin with the fixed-point patterns seen by characters and with the probabilities seen by states.
+
+\begin{prop}\label{rankpatterns}
+For $0\leq R<N$, the characters of $D_{N,R}$ correspond to the subsets of size at most $R$. The vectors $(\varphi(p_i))_{i=1}^N$ obtained from states of $D_{N,R}$ fill the polytope
+\[
+ 0\leq x_i\leq 1,\qquad \sum_i x_i\leq R.
+\]
+Every such vector is realized by a probability measure on classical partial permutations of rank $R$.
+\end{prop}
+\begin{proof}
+We have $\sum_i p_i\leq\kappa=R\,1$. On a character, the marked ones therefore specify a set $S$ of at most $R$ points. Fix $S$ and put $T=R-|S|$. If $T>0$, choose $T+1$ distinct vertices outside $S$ and send each to the next along this list, leaving the last without an image. This gives $T$ extra arrows and no extra fixed point. For $T=0$ use the partial identity on $S$.
+
+The vertices of the displayed polytope have zero-one entries. Indeed, two fractional entries can be varied in opposite directions, and a single fractional entry forces the sum to be strictly less than the integer $R$, so it too can be varied. Taking mixtures of the classical maps gives every point of the polytope.
+\end{proof}
+
+At rank one all entries are orthogonal, since they are projections summing to $1$. Thus $D_{N,1}=\mathbb C^{N+1}$ for $N\geq2$. At full rank the array is magic, and the classical fixed-point patterns lose just the sets with one missing point. Indeed, row and column orthogonality gives $1-p_i=\sum_{j\ne i}u_{ij}\leq\sum_{j\ne i}(1-p_j)$, excluding those patterns even for characters of the quantum diagonal. Every remaining pattern is realized by fixing the prescribed set and cycling its complement. The program \texttt{diagonals.py} checks these full-rank patterns through eight points.
+
+How many marked points retain their universal diagonal algebra when the rank is prescribed?
+
+\begin{thm}\label{rankfree}
+In $A_{N,R}$, fix $M$ distinct diagonal positions, with $1\leq M\leq N$ and $0\leq R\leq N$. The canonical map from $F_M$ onto the unital algebra generated by the marked projections is an isomorphism exactly when
+\[
+ M\leq R\leq 2(N-M).
+\]
+Throughout this range, any choice of $M$ projections in a unital $C^*$-algebra occurs at the marked positions of a rank-$R$ submagic matrix over the same algebra.
+\end{thm}
+\begin{proof}
+Relabel the marked points $1,\ldots,M$ and write $K=N-M$. If all marked projections are set equal to one, their sum is $M\,1$, so universality requires $M\leq R$.
+
+For the other bound, suppose that the marked algebra is $F_M$. Choose distinct rank-one projections $q_i$ in $\mathbb C^2$ with ranges arbitrarily close to the line of a unit vector $\xi$. Represent the marked generators by $1-q_i$. The vector state of $\xi$ extends from the marked algebra to a state of $A_{N,R}$. In its GNS representation the cyclic subspace generated from $\xi$ by the marked algebra is reducing for that algebra. On this subspace the marked projections have their prescribed action, restricted to the cyclic subspace of the original vector state.
+
+For marked $i\ne j$, the positive compression of $u_{ij}$ to this subspace is dominated by both $q_i$ and $q_j$, since $u_{ij}\leq1-p_i,1-p_j$. Their ranges have zero intersection, so this compression vanishes. The entries outside the marked square are covered by $K$ rows and $K$ columns, each of sum at most one. Taking the extended state gives
+\[
+ R\leq 2K+\sum_{i=1}^M\langle(1-q_i)\xi,\xi\rangle .
+\]
+Let the lines approach the line of $\xi$. This proves $R\leq2K$, including when a representation of the marked algebra requires a larger Hilbert space to extend.
+
+Conversely prescribe $p_1,\ldots,p_M$ and put $T=\min(M,R-M)$. Pair each of the first $T$ marked vertices with its own unmarked vertex and use the magic block
+\[
+ \begin{pmatrix}p_i&1-p_i\\1-p_i&p_i\end{pmatrix}.
+\]
+Each block contributes $2$ to the rank. At each remaining marked vertex put $p_i$ on the diagonal. Place $1-p_i$ either in its row at an unused unmarked column, or in its column at an unused unmarked row. Each of the $K-T$ remaining unmarked vertices supplies one row and one column, which can serve different marks. If $T=R-M$, the inequality $R\leq2K$ gives $M-T\leq2(K-T)$, so these positions suffice. Each remaining mark contributes one to the rank, giving $M+T=R$. If $R>2M$, all $M$ marks have magic blocks. Add $R-2M$ diagonal ones at the remaining unmarked vertices, possible since $R\leq N$. Put zero elsewhere. In each row and column the only possible pair of nonzero entries consists of $p_i,1-p_i$ for one $i$. The sum of all entries is $R\,1$. Applying this construction to the generators of $F_M$ splits the canonical map.
+\end{proof}
+
+At full rank we recover the criterion $2M\leq N$. At rank two any pair is universal already on three points. To see the first relation involving three different fixed points, we compute that entire three-point algebra.
+
+\begin{thm}\label{ranktwothree}
+In $D_{3,2}$ a linear basis of the polynomial algebra consists of the unit and all words with consecutive letters distinct that use at most two of $p_1,p_2,p_3$. Every word using all three is zero. For every polynomial $f$ its norm is
+\[
+ \|f(p_1,p_2,p_3)\|
+ =\max\big(\|f(e_1,e_2,0)\|,\|f(e_1,0,e_2)\|,\|f(0,e_1,e_2)\|\big),
+\]
+where the three norms on the right are computed in $F_2$.
+\end{thm}
+\begin{proof}
+To realize the first term on the right, take the submagic matrix
+\[
+ \begin{pmatrix}e_1&0&1-e_1\\0&e_2&0\\0&1-e_2&0\end{pmatrix}.
+\]
+Its rank is two. Relabeling gives the other two terms and the lower bound.
+
+By Proposition \ref{oneborder} every three-point submagic matrix of rank two has a unique four-point magic completion with last diagonal entry zero. Conversely such a magic matrix has a rank-two upper corner. Thus $A_{3,2}$ is $C(S_4^+)/\langle u_{44}\rangle$. We use the faithful Pauli model recalled in \cite{qp}. At a unit quaternion $x$, its four diagonal lines are spanned by $s x s^{-1}$ for $s=1,i,j,k$. In real quaternion coordinates these conjugations form a group of four orthogonal sign changes in which every element squares to one. Consequently the absolute inner products of the unit vectors on any pair of lines and on the complementary pair agree: the product of the two sign changes is the same for both pairs.
+
+Every irreducible representation of $A_{3,2}$ is a subrepresentation of one such fiber. Indeed, lift a pure state defining the representation to $C(S_4^+)$ along the quotient and extend it to a pure state of $C(SU_2,M_4(\mathbb C))$ along the faithful model. A pure extension exists by taking an extreme point of the face of state extensions. Its irreducible representation evaluates the center at a point, then represents the matrix algebra at that point. The cyclic subspace for $C(S_4^+)$ is reducing, and the fourth diagonal projection vanishes on it. Each diagonal line therefore lies in this subspace or is orthogonal to it. If one of the first three projections vanishes there, the representation of the diagonal factors through the corresponding substitution on the right. If all three lines lie in the subspace, they are orthogonal to the fourth line. The complementary-pair identity makes them pairwise orthogonal too. They then split as scalar patterns with at most one fixed point, each covered by the same substitutions. Taking the supremum over irreducible representations proves the upper bound.
+
+The three substitutions kill every word involving all three letters. For independence, apply each substitution to a linear relation among the indicated basis words. The surviving reduced words and the unit are independent in $F_2$, by the walk basis of Theorem \ref{words} on a two-vertex clique. Every indicated word survives some substitution.
+\end{proof}
+
+Four points already give a different answer for individual words.
+
+\begin{prop}\label{tetrawords}
+At rank two on four points every word in $p_1,p_2,p_3,p_4$ is nonzero, including words using all four marks.
+\end{prop}
+\begin{proof}
+Take $w=e^{2\pi i/3}$ and the four unit vectors in $\mathbb C^2$ given by
+\[
+ (1,0),\qquad (1/\sqrt3,\sqrt{2/3}\,w^j)\quad (j=0,1,2).
+\]
+Their line projections sum to $2I$: the diagonal sums are both two and the off-diagonal sums vanish by $1+w+w^2=0$. Place them on the diagonal of a submagic matrix. The squared inner product between any two different vectors is $1/3$. A product of line projections is an outer product of the two end vectors multiplied by the successive inner products, all nonzero here.
+\end{proof}
+
+For linear combinations the first possible obstruction has degree at least four.
+
+\begin{prop}\label{smalldegree}
+In any polynomial relation among three marked diagonal projections of $A_{4,2}$, write the polynomial in reduced words. Each word with a nonzero coefficient must contain all three unordered pairs of distinct marks as consecutive letters. In particular the unit and all reduced words of length at most three are linearly independent.
+\end{prop}
+\begin{proof}
+Prescribe projections $p,q,r$ with $qr=0$ and take the submagic array
+\[
+ \begin{pmatrix}p&0&0&1-p\\0&q&0&0\\0&0&r&0\\0&1-q-r&0&0\end{pmatrix}.
+\]
+Its entries sum to $2$. In the universal algebra on $p,q,r$ subject to $qr=0$, the reduced words avoiding $qr,rq$ and the unit are linearly independent. Indeed, the walk construction of Lemma \ref{separator} on the path $q,p,r$ separates each such word of maximal length, after evaluation at zero removes the constant. Thus, in any relation, every word avoiding the pair $\{q,r\}$ has coefficient zero. Relabeling proves the same assertion for either other pair. A word of length at most three has at most two successive pairs.
+\end{proof}
+
+The first words meeting all three pairs have length four. Two rank-two models separate them.
+
+\begin{thm}\label{fourletters}
+At rank two on four points the unit and all reduced words of length at most four in three marked diagonal projections are linearly independent.
+\end{thm}
+\begin{proof}
+By Proposition \ref{smalldegree}, only the six words $p_i p_j p_k p_i$ with $(i,j,k)$ a permutation of $(1,2,3)$ can occur in a relation of this degree. For each initial letter $i$, write $\alpha_i$ for the coefficient in cyclic order and $\beta_i$ for that in reverse order.
+
+Use the first three line projections in Proposition \ref{tetrawords}. Here $p_1p_2p_3p_1$ is $c p_1$ with $c=(1+2w)/9$, and cycling the indices preserves $c$. Reversing them conjugates $c$, which is purely imaginary and nonzero. The three projections are linearly independent, since their trace Gram matrix has diagonal one and off-diagonal $1/3$. Thus $\alpha_i-\beta_i=0$ for each $i$.
+
+For a second model let $a_i$ be the standard basis of $\mathbb R^4$ and $b_i$ the columns of the orthogonal matrix
+\[
+ \frac{1}{\sqrt3}
+ \begin{pmatrix}
+ 0&1&1&1\\-1&0&1&-1\\-1&-1&0&1\\-1&1&-1&0
+ \end{pmatrix}.
+\]
+Write $P_x$ for projection onto the line of a unit vector $x$. Put $u_{ij}=P_{a_i}\otimes P_{a_j}+P_{b_i}\otimes P_{b_j}$. The two bases are orthonormal and $a_i\perp b_i$ for every $i$. This makes $u$ submagic with sum $2I$. Its diagonal projection $p_i$ has orthonormal range vectors $f_i=a_i\otimes a_i$, $g_i=b_i\otimes b_i$. For distinct labels the only nonzero inner products are $\langle f_i,g_j\rangle=\langle g_i,f_j\rangle=1/3$. Thus each step to a different label exchanges the two range vectors with coefficient $1/3$. For three distinct labels this gives
+\[
+ p_i p_j p_k p_i=p_i p_k p_j p_i=T_i/27,
+ \qquad T_i=f_i g_i^t+g_i f_i^t .
+\]
+The matrix with entries $\langle f_a,T_i g_a\rangle$ for $1\leq a,i\leq3$ has diagonal one and off-diagonal $1/9$, so $T_1,T_2,T_3$ are linearly independent. This time $\alpha_i+\beta_i=0$ for each $i$. Combining the two models gives the assertion.
+\end{proof}
+
+We can also compute the norm of the shortest word involving three marks.
+
+\begin{prop}\label{threemarknorm}
+At rank two on $N\geq4$ points, for distinct $i,j,k$ we have
+\[
+ \|p_i p_j p_k\|=1/2.
+\]
+Every word involving at least three distinct marks has norm at most $1/2$.
+\end{prop}
+\begin{proof}
+Write $p,q,r$ for the three projections. Compressing $p+q+r\leq 2$ by $q$ gives $qrq\leq q-qpq$. Hence, with $a=pqp$,
+\[
+ (pqr)(pqr)^*\leq p(q-qpq)p=a-a^2\leq p/4 .
+\]
+For equality take $p,r$ on the two coordinate axes of $\mathbb C^2$ and $q$ on the line of $(1,1)$. The construction in Proposition \ref{smalldegree} realizes these projections after relabeling, and zero rows and columns allow any $N\geq4$. The only nonzero entry of $pqr$ is $1/2$. In a reduced word, the first occurrence of a third mark completes a block of three distinct letters. All remaining factors are contractions.
+\end{proof}
+
+Thus a word on three distinct marks vanishes at rank two on three points, while on four points every word survives and the shortest such word has norm $1/2$. The fixed-rank version of the freeness question in \cite{qp} asks whether the reduced words in three marked projections and the unit are linearly independent in $D_{4,2}$. This remains open. By Theorem \ref{fourletters} any relation has degree at least five. The program \texttt{fixedrank.py} checks the small-rank models.
+
+\section{Partial Hadamard matrices}\label{hadamard}
+
+We now apply the graph construction to the row-quotient model of \cite{bs}. For its diagonal algebra we use the configuration space of \cite{qp}, as in Section \ref{diagonalsection}. The entries of the model come from dividing one row by another. We write $\mathbb T=\{z\in\mathbb C:|z|=1\}$ and use $\langle x,y\rangle=\sum_j x_j\overline{y_j}$.
+
+\begin{samepage}
+\begin{defn}
+A partial Hadamard matrix $H\in M_{M\times N}(\mathbb T)$ has pairwise orthogonal rows. Its row-quotient projections are given by
+\[
+ P_{ij}=\frac{1}{N}v_{ij}v_{ij}^*,\qquad v_{ij}=R_i/R_j ,
+\]
+where the quotient is taken coordinatewise and $v_{ij}$ is written as a column in the projection formula.
+\end{defn}
+\end{samepage}
+
+Row quotients behave particularly simply under Hadamard equivalence.
+
+\begin{defn}
+Two partial Hadamard matrices are equivalent if one is obtained from the other by permuting rows and columns and multiplying individual rows and columns by elements of $\mathbb T$. A matrix is dephased if its first row and column consist of ones.
+\end{defn}
+
+These operations allow us to normalize the matrix before testing any of its quotient projections.
+
+\begin{prop}\label{quotientmodel}
+Every partial Hadamard matrix is equivalent to a dephased one. Its row-quotient projections form a submagic matrix $P$. Hadamard equivalence preserves this model up to relabeling the row indices and conjugating all projections by a common column permutation.
+\end{prop}
+\begin{proof}
+Multiply each column by the conjugate of its first entry, then each row by the conjugate of its new first entry. Column phases cancel in a row quotient and row phases multiply it by a scalar of modulus one. Row permutations relabel the quotients, and a column permutation permutes their coordinates. Finally,
+\[
+ \langle v_{ij},v_{ik}\rangle=\langle R_k,R_j\rangle,\qquad
+ \langle v_{ij},v_{kj}\rangle=\langle R_i,R_k\rangle .
+\]
+The first expression vanishes for $j\ne k$ and the second for $i\ne k$. Hence the projections are orthogonal in each row and column, giving the required representation of $C(\widetilde S_M^+)$.
+\end{proof}
+
+We use the semigroup generated by this representation.
+
+\begin{defn}
+For a partial Hadamard matrix $H$, let $G(H)$ denote the bialgebra image of $u_{ij}\to P_{ij}$, in the sense of \cite{bs}. Thus $G(H)$ is the smallest quantum subsemigroup of $\widetilde S_M^+$ through whose coordinate algebra the representation factors.
+\end{defn}
+
+The bialgebra image of \cite{bs} is the semigroup version of the Hopf image of \cite{bb}. We recall its tensor-power formula.
+
+\begin{prop}\label{bialg}
+Let $\pi$ be a representation of the polynomial coordinate algebra $B$ of $\widetilde S_M^+$. Its bialgebra image is
+\[
+ B\Big/\bigcap_{R\geq1}\ker\pi_R,\qquad \pi_R=\pi^{\otimes R}\Delta^{(R-1)},
+\]
+with $\pi_1=\pi$. If the entries $\pi(u_{ij})$ commute and have joint spectrum $S\subset\widetilde S_M$, this quotient is $C(\langle S\rangle)$, where $\langle S\rangle$ is the semigroup generated by $S$.
+\end{prop}
+\begin{proof}
+The tensor-power maps separate the quotient, and their pairwise tensor products separate its algebraic tensor square. Thus $(\pi_R\otimes\pi_L)\Delta=\pi_{R+L}$ makes the coproduct descend. If $\pi$ factors through a coproduct quotient, so does each $\pi_R$, giving minimality. In the commuting case $\pi_R$ evaluates on all products of $R$ elements of $S$.
+\end{proof}
+
+A pre-Latin square on $N$ symbols is a square array of symbols with no repetition in any row or column. Symbols may be unused.
+
+\begin{prop}\label{latin}
+A rank-one submagic array on $\mathbb C^N$ has commuting entries exactly when some orthonormal basis identifies its entries with the coordinate-line projections specified by a pre-Latin square. Its bialgebra image is generated by the partial maps obtained by reading the positions of each symbol, with an unused symbol giving the empty map.
+\end{prop}
+\begin{proof}
+Commuting rank-one projections have equal or orthogonal ranges. Choose one unit vector per distinct range and complete to a basis. Row and column orthogonality forbid repeated symbols. Conversely the coordinate projections commute. Evaluation on one basis vector records all assignments of its symbol, so Proposition \ref{bialg} applies.
+\end{proof}
+
+We first determine which colors on ordered row pairs are preserved.
+
+\begin{thm}\label{gram}
+Let $H$ be any partial Hadamard matrix with row index set $V$. Form the graph on $V^2$ in which distinct pairs $(i,j)$ and $(a,b)$ are joined when
+\[
+ \langle R_i/R_j,R_a/R_b\rangle\ne0 .
+\]
+We have $G(H)\subset\widetilde G^+(d)$ precisely for the color matrices $d$ that are constant on each connected component, where $\widetilde G^+(d)$ denotes the quantum partial automorphisms of $(V,d)$. In particular, these components give the finest invariant coloring of ordered row pairs.
+\end{thm}
+\begin{proof}
+The model factors through $C(\widetilde G^+(d))$ exactly when $P_{ia}P_{jb}=0$ for the mismatched colors of Proposition \ref{local}. Since the quotient is a bialgebra quotient, this is equivalent to the inclusion of bialgebra images in the statement. Products of rank-one projections vanish precisely for orthogonal vectors. The four entries in each summand of the inner product can be regrouped as
+\[
+ \langle R_i/R_a,R_j/R_b\rangle
+ =\sum_l H_{il}H_{bl}\overline{H_{al}H_{jl}}
+ =\langle R_i/R_j,R_a/R_b\rangle .
+\]
+Thus each edge forces its two colors to coincide. Conversely constancy along edges imposes every required zero product.
+\end{proof}
+
+In the square case, quotient vectors also enter the Nomura algebra of a type II matrix \cite{jmn}. The component description here applies at every width.
+
+\begin{prop}\label{components}
+The diagonal pairs form one component of the graph in Theorem \ref{gram}. If the quotient projections commute, its components are exactly the classes of equal quotient lines. For a restriction of a finite abelian Fourier matrix to rows $A$, the resulting colors are the differences in $A-A$, in additive notation.
+\end{prop}
+\begin{proof}
+Each diagonal pair has quotient vector $1$, and every off-diagonal quotient is orthogonal to $1$. Two commuting rank-one projections have equal or orthogonal lines. Thus in the commuting case an edge means equality of lines. For a Fourier matrix the quotient of rows $a,b$ is the row $a-b$, and different Fourier rows are orthogonal.
+\end{proof}
+
+We first consider ordinary Hadamard completion when one row is missing \cite{wlfz}.
+
+\begin{prop}
+Every $(N-1)\times N$ partial Hadamard matrix, $N\geq2$, can be completed by a row unique up to phase.
+\end{prop}
+\begin{proof}
+The projection onto the known row span has diagonal $(N-1)/N$, by summing the normalized row projections. The complementary rank-one projection thus has diagonal $1/N$. A unit vector spanning its range has all entries of modulus $1/\sqrt N$, so scaling gives the missing row. The complementary line determines the row up to phase.
+\end{proof}
+
+The same missing row answers the minor and projection completion questions of \cite{bs}, including the $4\times5$ case.
+
+\begin{prop}\label{cofactor}
+For any $(N-1)\times N$ partial Hadamard matrix $H$, let $H^{(j)}$ be obtained by deleting column $j$. All its maximal minors satisfy $|\det H^{(j)}|=N^{N/2-1}$. One choice for the completing row is
+\[
+ Z_j=(-1)^j N^{1-N/2}\overline{\det H^{(j)}} .
+\]
+The quotient projections complete uniquely to a magic array, namely the quotient model of the completed matrix.
+\end{prop}
+\begin{proof}
+Expansion along a repeated row gives the cofactor vector, after conjugation, in the orthogonal complement of the rows. By the preceding proposition this line is spanned by a constant-modulus vector. Cauchy--Binet gives $\sum_j|\det H^{(j)}|^2=\det(HH^*)=N^{N-1}$, hence the common modulus and the normalization in the statement. Quotients of the completed matrix have $N$ orthogonal lines in each row and column, so their array is magic. Its border is unique by Proposition \ref{oneborder}.
+\end{proof}
+
+We can express the final corner in terms of the columns of the given matrix.
+
+\begin{prop}
+With columns $C_k$ of $H$, set $G_{kl}=|\langle C_k,C_l\rangle|^2/N$. Then $G-(N-2)1$ is the rank-one projection onto the constant vector. For any unit vector $z$ normal to the rows we also have
+\[
+ H\operatorname{diag}(|z_j|^2)H^*=1_{N-1}.
+\]
+Both identities hold for every partial Hadamard matrix of codimension one.
+\end{prop}
+\begin{proof}
+Summing the $(k,l)$ matrix entries of $P_{ij}$ over $i,j$ gives $G_{kl}$ by factoring the two sums. Proposition \ref{oneborder} identifies $G-(N-2)1$ as the final corner of the completion, hence as the projection onto $Z/Z=1$. The normal unit vector has $|z_j|^2=1/N$, and $HH^*=N1$ gives the other identity.
+\end{proof}
+
+We now take up the commutation question of \cite{bs}. In the square case the answer recalled there consists of the finite abelian Fourier matrices up to equivalence.
+
+\begin{lem}\label{orth}
+Let $A$ be the row set of a dephased partial Hadamard matrix and $D=A/A$. Its row-quotient projections commute if and only if the distinct elements of $D$ are pairwise orthogonal. In this case $|A|\leq |D|\leq N$.
+\end{lem}
+\begin{proof}
+Two rank-one projections commute precisely when their ranges are equal or orthogonal. Each vector in $D$ starts with a one, so proportionality here means equality. The first row gives $1\in A$ and hence $A\subset D$. Orthogonality gives the upper bound.
+\end{proof}
+
+The dephased rows belong to the group of vectors in $\mathbb T^N$ with first coordinate one. On any subgroup $K$ of this group, evaluation at column $j$ is a character, which we denote by $j|_K$.
+
+\begin{lem}\label{fibres}
+Suppose the distinct elements of $D$ are orthogonal and $K$ is a subgroup contained in $D$. Every character of $K$ occurs on exactly $N/|K|$ columns. If $xK$ and $yK$ are distinct cosets contained in $D$, then
+\[
+ \sum_{j\, :\, j|_K=\chi} x_j\overline{y_j}=0
+\]
+on every character fiber, where $j|_K$ denotes the character given by column $j$.
+\end{lem}
+\begin{proof}
+Write $N_\chi$ for the multiplicity of $\chi$. For $h\in K$ we have $\sum_\chi N_\chi\chi(h)=\langle h,1\rangle=N\delta_{h,1}$. Fourier inversion on $K$ gives $N_\chi=N/|K|$. For the second assertion, the inner products $\langle xh,y\rangle$ vanish for all $h\in K$. Their Fourier coefficients are the sums in the statement.
+\end{proof}
+
+When the quotient set is a group this identifies all the columns.
+
+\begin{prop}\label{repeatfourier}
+Let $H$ be dephased with row set $A$ and commuting quotient projections. If $D=A/A$ is a group, then $H$ is the restriction to $A$ of the character table of $D$ with each column repeated $N/|D|$ times, up to column permutation.
+\end{prop}
+\begin{proof}
+For $a\in A\subset D$ the entry in column $j$ is $(j|_D)(a)$. Apply Lemma \ref{fibres} with $K=D$ to count each character.
+\end{proof}
+
+To recognize a group of quotients we use the following counting argument.
+
+\begin{lem}\label{small}
+Let $A$ be a nonempty finite subset of an abelian group and write $D=A/A$. If $|D|<3|A|/2$, then $D$ is a subgroup.
+\end{lem}
+\begin{proof}
+Put $M=|A|$. For $d=b/a\in D$, the sets $A/a$ and $A/b$ lie in $D$, so their intersection has at least $2M-|D|>M/2$ elements. Consequently more than half the $x\in A$ satisfy $dx\in A$. For any $d,e\in D$ we can choose the same $x$ for both. Now $d/e=(dx)/(ex)\in D$, proving closure under quotients.
+\end{proof}
+
+For a finite abelian group $K$, write $F_K=(\chi(h))_{h\in K,\,\chi\in\widehat K}$. We can now recover an entire Fourier table from sufficiently many rows.
+
+\begin{thm}\label{rigidity}
+Suppose $M>2N/3$. A partial Hadamard matrix has commuting row-quotient projections if and only if it is equivalent to $M$ rows of some $F_K$ with $|K|=N$. In dephased coordinates the full set of Fourier rows is $A/A$. In particular, if $M=N-1$ and $N\geq4$, the given rows recover the entire Fourier completion by taking quotients.
+\end{thm}
+\begin{proof}
+Lemmas \ref{orth} and \ref{small} show that $D$ is a group. By Lemma \ref{fibres} its order divides $N$. Since $|D|\geq M>N/2$, this divisor is $N$ itself. Every character occurs once, giving the required Fourier matrix. Conversely the quotients of rows of a character table are again rows of that table, so their projections commute. For a dephased row restriction with more than half the rows, any two translates of the row set inside the group meet. Thus all group elements occur as quotients. For $N\geq4$ we have $N-1>2N/3$, giving the codimension-one assertion.
+\end{proof}
+
+\section{Fourier models and translations}\label{fouriersection}
+
+Let $H$ be dephased and suppose its row-quotient projections commute. Above density $2/3$, the row quotients form a group. For $M>N/2$ we can still use the periods of the quotient set. The size of the stabilizer determines which Fourier models can occur.
+
+\begin{defn}
+For a dephased row set $A$ and $D=A/A$, let $K=\{h\in\langle A\rangle:hD=D\}$ be the stabilizer of $D$. Write $B$ for the image of $A$ in $\langle A\rangle/K$. We set $S=|B|$ and $T=N/|K|$.
+\end{defn}
+
+Since $1\in D$, the stabilizer lies in the finite set $D$. Lemma \ref{fibres} identifies $T$ as the number of columns in each character fiber whenever the projections commute.
+
+\begin{prop}\label{reduce}
+For commuting row-quotient projections and $M>N/2$ we have
+\[
+ |D|=N,\qquad |B/B|=T=2S-1,\qquad M/N\leq S/(2S-1).
+\]
+In particular, on each character fiber the restrictions of one representative of every coset in $D/K$ form the rows of a square Hadamard matrix of order $T$.
+\end{prop}
+\begin{proof}
+Kneser's addition theorem \cite{hou,kneser} gives $|D|\geq 2|AK|-|K|=(2S-1)|K|$. On the other hand $|D|\leq N<2M\leq 2S|K|$. Both $N$ and $|D|$ are multiples of $|K|$ by Lemma \ref{fibres} and the definition of $K$. The inequalities force $|D|=N=(2S-1)|K|$. The last assertion follows by the fiber orthogonality of Lemma \ref{fibres}.
+\end{proof}
+
+The inverse ordering of \cite{prime} gives a prime-width example at the first integer above half the width. For a prime $N\equiv1\pmod4$, let $Q$ be the nonzero squares in $\mathbb F_N$ and put $w=e^{2\pi i/N}$. Take the all-ones row together with the rows $R_a=(w^{f_a(x)})_{x\in\mathbb F_N}$ for $a\in Q$, where $f_a(0)=0$ and
+\[
+ f_a(x)=
+ \begin{cases}
+ ax & x\in Q,\\
+ a^{-1}x & x\in\mathbb F_N^*\setminus Q.
+ \end{cases}
+\]
+These rows agree with the corresponding Fourier rows on the square columns. On the nonsquare columns the row labels are inverted.
+
+\begin{prop}\label{inverseorder}
+For every prime $N\equiv1\pmod4$ the inverse-ordering matrix is a partial Hadamard matrix with $(N+1)/2$ rows. Its row-quotient projections commute exactly when $N=5$.
+\end{prop}
+\begin{proof}
+Each $f_a$ permutes $\mathbb F_N$. For distinct $a,b\in Q$, the difference $f_a-f_b$ has slopes $d=a-b$ on the squares and $e=a^{-1}-b^{-1}=-d/(ab)$ on the nonsquares. Since $-1,a,b\in Q$, the two slopes have the same quadratic character. Thus $f_a-f_b$ also permutes $\mathbb F_N$. Summing the $N$th roots of unity gives row orthogonality. At $N=5$ inversion fixes both elements of $Q$, so the matrix consists of Fourier rows.
+
+Now let $N\geq13$ and recall that $|Q|=(N-1)/2$. Each quotient $R_a/R_b$ with $a\ne b$ determines both $d$ and $e$. Given $d,e$, we know $a-b=d$ and $ab=-d/e$, so $b$ satisfies the quadratic equation $b(b+d)=-d/e$. At most two ordered pairs give the same quotient. The $|Q|(|Q|-1)$ ordered pairs therefore give at least $|Q|(|Q|-1)/2$ nonconstant quotients. Including the constant row, we have
+\[
+ |A/A|\geq 1+\frac{(N-1)(N-3)}{8}>N
+\]
+for the row set $A$. Lemma \ref{orth} bounds $|A/A|$ by $N$ whenever the projections commute.
+\end{proof}
+
+There is also a completion interpretation. Under commutation, Proposition \ref{reduce} would give exactly $N$ quotients, pairwise orthogonal by Lemma \ref{orth}. They contain the original rows because the all-ones row belongs to $A$, and all their entries are $N$th roots of unity. They would therefore complete the matrix at level $N$. For $N\geq13$ even one additional orthogonal row at this level is excluded by \cite{prime}.
+
+For two points the set $B$ is a progression. The next case follows from a short difference count.
+
+\begin{lem}\label{three}
+If a three-element subset $B$ of an abelian group has $|B/B|=5$, it can be written as $b\{1,x,x^2\}$ for some $b,x$.
+\end{lem}
+\begin{proof}
+Each of the three unordered pairs in $B$ supplies one inverse pair of differences, possibly a singleton of order two. If two unordered pairs supply the same inverse pair, orient both differences away from their common vertex. They are distinct, so they are inverses and the three vertices form a progression. Otherwise, to obtain four nonidentity differences, exactly two inverse pairs must be singletons. The remaining difference is then a product of two involutions in an abelian group, and has order at most two as well, a contradiction.
+\end{proof}
+
+The corresponding matrices can be written explicitly.
+
+\begin{defn}\label{array}
+For $S\geq2$, let $I_S=\{0,\ldots,S-1\}$ and $w=e^{2\pi i/(2S-1)}$. For a finite abelian group $K$ and phases $z_\chi\in\mathbb T$, one for each $\chi\in\widehat K$, put
+\[
+ H_S(K,z)_{(a,h),(\chi,j)}=\chi(h)(z_\chi w^j)^a ,
+\]
+with row indices $(a,h)\in I_S\times K$ and column indices $(\chi,j)\in\widehat K\times I_{2S-1}$.
+\end{defn}
+
+We next identify the matrices whose row cosets form a progression.
+
+\begin{thm}\label{bands}
+Suppose $M>N/2$ and the row-quotient projections commute. If $B$ is a progression of length $S\geq2$, then $H$ is equivalent to a row restriction of $H_S(K,z)$. Conversely, every row restriction of $H_S(K,z)$ has commuting row-quotient projections and completes to a square Hadamard matrix of order $(2S-1)|K|$.
+\end{thm}
+\begin{proof}
+Multiply all rows coordinatewise by the inverse of a lift of the initial coset. This is a column rephasing. Choose a lift $x$ of the step. All rows now belong to $x^aK$ with $a\in I_S$, and $D$ consists of the $T=2S-1$ distinct cosets $x^d K$, $1-S\leq d\leq S-1$. On a given character fiber, Lemma \ref{fibres} says that the restrictions of $x^d$ are pairwise orthogonal. Writing $y_1,\ldots,y_T$ for the entries of $x$ on that fiber, this gives
+\[
+ \sum_{j=1}^T y_j^r=0,\qquad 1\leq r<T.
+\]
+Newton's identities give $\prod_j(X-y_j)=X^T-c$ for some $c\in\mathbb T$. Permute the columns within this fiber to write the entries as $z_\chi w^j$, $j\in I_T$. This is the claimed array.
+
+Conversely the possible quotient vectors have the form $\chi(g)(z_\chi w^j)^d$ for $g\in K$ and $1-S\leq d\leq S-1$. Distinct $d$ are orthogonal by summing over $j$, and at equal $d$ the character sum over $\chi$ gives orthogonality for distinct $g$. Finally, take all rows with $a\in I_T$ in the defining formula. They are orthogonal by the same two sums, and form a square matrix. This is a Fourier block deformation of the type considered in \cite{dita}.
+\end{proof}
+
+Because $S/(2S-1)$ decreases to $1/2$, the first three values of $S$ settle an interval of densities.
+
+\begin{thm}\label{classification}
+For $M>4N/7$ the complete list with commuting row-quotient projections consists, up to equivalence and row deletion, of $F_K$, $H_2(K,z)$ and $H_3(K,z)$ of the required width. For $M>3N/5$ only the first two are needed. At $M=2N/3$ every non-Fourier example is a full $H_2(K,z)$.
+\end{thm}
+\begin{proof}
+Proposition \ref{reduce} gives $S\leq3$ in the first range and $S\leq2$ in the second. For $S=1$ we have $D=K$ of order $N$, so Proposition \ref{repeatfourier} identifies $H$ with a row restriction of $F_K$. For $S=2,3$ apply Lemma \ref{three} when necessary, followed by Theorem \ref{bands}. At density $2/3$ the case $S=2$ has $M=2|K|$, so both cosets occur in full.
+\end{proof}
+
+The first two boundary sizes already distinguish the families in the list.
+
+\begin{prop}\label{boundary}
+Let $K=\mathbb Z_2$, $z=(1,q)$ and $w=e^{2\pi i/3}$. Then $H_2(K,z)$ is equivalent to
+\[
+ \begin{pmatrix}
+ 1&1&1&1&1&1\\
+ 1&1&1&-1&-1&-1\\
+ 1&w&w^2&q&qw&qw^2\\
+ 1&w&w^2&-q&-qw&-qw^2
+\end{pmatrix}.
+\]
+For $q^6\ne1$ this matrix is not a restriction of any Fourier matrix of order six up to equivalence. The family contains uncountably many equivalence classes. For $q$ of infinite order the $6\times10$ matrix $H_3(K,z)$ is equivalent neither to a Fourier restriction nor to a row restriction of an $H_2$ array at width ten.
+\end{prop}
+\begin{proof}
+The display follows from Definition \ref{array}. Under equivalence the set of cross ratios $H_{ij}H_{ab}/(H_{ib}H_{aj})$ is invariant. The first and third rows and the first and fourth columns give $q$ as a cross ratio. Every cross ratio of a Fourier matrix of order six is a sixth root of unity. Furthermore, any one equivalence class has only finitely many cross ratios, so it accounts for only finitely many parameters $q$. In $H_3(\mathbb Z_2,z)$, use the rows with $a=0,1$ and $h=0$ (in additive notation), and the two columns with $j=0$. The cross ratio $q$ again excludes a Fourier restriction if $q$ has infinite order. Width ten excludes $H_2$, whose width is a multiple of three.
+\end{proof}
+
+It remains to compute the semigroups in these examples. We use additive notation for a finite abelian group $L$.
+
+\begin{defn}
+For a nonempty set $A\subset L$ and $g\in L$, the restricted translation $\tau_g$ sends $a$ to $a+g$ on $A\cap(A-g)$. All maps with empty domain represent the same empty map.
+\end{defn}
+
+For Fourier rows the joint eigenvectors of the projections give these translations.
+
+\begin{thm}\label{translation}
+For $H=F_L|_A$, the semigroup $G(H)$ is generated by the $\tau_g$, $g\in L$. Its elements are exactly the maps $a\to a+g$ on sets $E\subset A\cap(A-g)$ which are finite intersections of translates of $A$ including $A$ itself as a factor.
+\end{thm}
+\begin{proof}
+In the Fourier row basis the projection $P_{ab}$ picks out the basis vector labeled $a-b$. Evaluation on the vector labeled $g$ gives exactly $\tau_g$. In a diagonal representation, the bialgebra image is the classical semigroup generated by these evaluations \cite{bs}. A product with steps $g_1,\ldots,g_R$ is defined precisely where $a,a+g_1,\ldots,a+g_1+\ldots+g_R$ all belong to $A$. This gives the asserted form of the domain. Conversely $\tau_{-h}\tau_h$ is the partial identity on $A\cap(A-h)$. Products of these partial identities impose any finite intersection in the statement. Composing with $\tau_g$ gives the required map.
+\end{proof}
+
+Removing a single group element makes the intersections particularly simple.
+
+\begin{cor}
+For $A=L\setminus\{0\}$ and $N=|L|\geq2$ we have
+\[
+ |G(F_L|_A)|=1+(2^{N-1}-1)+(N-1)(2^{N-2}-1).
+\]
+This semigroup consists of all classical partial automorphisms of the coloring $(a,b)\to a-b$ on $A$.
+\end{cor}
+\begin{proof}
+Every subset of $A$ is the intersection of $A$ and some translates of $A$, since a translate can delete any prescribed point. Thus Theorem \ref{translation} allows all restrictions of each translation. Preservation of differences on a nonempty domain is exactly the requirement that $f(a)-a$ be constant, and this constant is unique. There are $N-1$ allowed source points for shift zero and $N-2$ for every nonzero shift. Count their nonempty subsets and add the empty map once.
+\end{proof}
+
+For the deformations the domains are intervals in their first coordinate.
+
+\begin{thm}\label{interval}
+For the full array $H_S(K,z)$, $S\geq2$, the nonzero elements of $G(H_S(K,z))$ are the translations
+\[
+ (a,h)\to(a+d,h+g),\qquad (a,h)\in J\times K ,
+\]
+where $K$ is written additively, $g\in K$, and $J,J+d$ are nonempty subintervals of $I_S$. There is one empty map. In particular the cardinality is $1+|K|\sum_{j=1}^S j^2$, independently of $z$.
+\end{thm}
+\begin{proof}
+The $(2S-1)|K|$ distinct quotient vectors in the proof of Theorem \ref{bands} form an orthogonal basis. The evaluation labeled $(d,g)$ is the indicated translation on its largest allowed domain. Any product has interval domain in the first coordinate, since all intermediate translates must lie in $I_S$. The second coordinate is unrestricted. Every prefix of $I_S$ is the domain of a maximal positive shift, and every suffix is the domain of a maximal negative shift. A shift followed by its inverse gives the identity on its domain. Intersecting a prefix and a suffix thus gives the partial identity on any interval. The required translation is obtained by composing this identity with a maximal shift. Two successive shifts by $S-1$ give the empty map. For length $L$ the source and target intervals can be chosen in $(S-L+1)^2$ ways, and $g$ in $|K|$ ways.
+\end{proof}
+
+We can now compute the diagonal algebra of the full array.
+
+\begin{cor}
+For $S\geq2$ we have
+\[
+ \dim D(G(H_S(K,z)))=1+\frac{S(S+1)}2 .
+\]
+Its spectrum consists of the empty fixed-point set and the sets $J\times K$ with $J$ a nonempty subinterval of $I_S$.
+\end{cor}
+\begin{proof}
+In Theorem \ref{interval}, a nonzero shift in either coordinate has no fixed point, and a zero shift fixes exactly its domain. An interval has two endpoints, giving $S(S+1)/2$ nonempty intervals. Proposition \ref{fixed} proves the formula. In the original matrix representation every $P_{ii}$ projects onto the line of $1$. The interval identities appear on passing to the bialgebra image.
+\end{proof}
+
+We return to the tensor product formula of \cite{bs}.
+
+\begin{prop}\label{tensorimage}
+For arbitrary partial Hadamard matrices $H,H'$, the polynomial coordinate algebra of $G(H\otimes H')$ identifies with the unital subalgebra generated by $u_{ij}\otimes v_{ab}$ in the algebraic tensor product of the polynomial coordinate algebras of $G(H)$ and $G(H')$.
+\end{prop}
+\begin{proof}
+The quotient of two product rows is the tensor product of their quotients, so its projection is $P_{ij}\otimes Q_{ab}$. The proposed subalgebra has the coordinate coproduct and realizes the model. The iterated representations in Proposition \ref{bialg}, after a permutation of tensor factors, are the restrictions of $\pi_R^H\otimes\pi_R^{H'}$. To see that they separate the subalgebra, first allow independent lengths $R,S$ in the two factors. Their tensor products separate points because the matrix coefficients in each factor span the dual on every finite-dimensional subspace. Each representation on one matrix factor contains the counit on the line of the constant vector. Hence a shorter length can be obtained by compressing extra tensor legs to that line. Every pair $R,S$ is detected at the common length $\max(R,S)$, proving the assertion.
+\end{proof}
+
+For commuting models this subalgebra has a description by ordinary partial maps.
+
+\begin{prop}\label{product}
+For two partial Hadamard matrices with commuting row-quotient projections, the semigroup of the tensor product is the image of $G(H)\times G(H')$ acting by Cartesian products of partial maps. The only possible identifications occur among pairs for which at least one map is empty.
+\end{prop}
+\begin{proof}
+In each factor choose a joint eigenbasis containing the all-ones vector. Evaluation there is the full identity because a nondiagonal row quotient is orthogonal to the all-ones vector. In the product basis the generating evaluations are all products of generating evaluations from the two factors, by the tensor formula for the rank-one projections. The full identity available in each factor allows arbitrary words to be padded to the same length. Thus every pair of semigroup elements acts, and a nonempty product map recovers both factors by projecting its graph onto the respective coordinates.
+\end{proof}
+
+The smallest interval example already exhibits the identification at the empty map.
+
+\begin{ex}\label{eleven}
+Let $T$ consist of the first two rows of $F_3$. Then $|G(F_2\otimes T)|=11$ and $|G(F_2)\times G(T)|=12$. The matrix $T$ is $H_2$ for the trivial group and phase one. Theorem \ref{interval} gives $|G(T)|=1+1^2+2^2=6$. With $K=\mathbb Z_2$ and both phases one, the same theorem gives $1+2(1^2+2^2)=11$ for the array of Proposition \ref{boundary}, which is $F_2\otimes T$ up to reordering. The two translations of $\mathbb Z_2$ paired with the empty map of $G(T)$ both give the empty product map, as in Proposition \ref{product}.
+\end{ex}
+
+The program \texttt{quotients.py} computes the coloring of Theorem \ref{gram} by exact cyclotomic arithmetic for root-of-unity entries. The program \texttt{translations.py} checks the intersection description of Theorem \ref{translation} by composition and counts fixed-point sets for $H_S(K,z)$.
+
+We finish with the four-coset case. Here the seven columns in a character fiber restrict the possible differences among the four points.
+
+\begin{thm}\label{fourcosets}
+In Proposition \ref{reduce}, if $|B|=4$, then $B$ is a translate of $\{0,x,2x,3x\}$ in additive notation. The possible orders of $x$ are infinity and the multiples of seven greater than seven, and every such order occurs.
+\end{thm}
+\begin{proof}
+Put $E=B-B$, so $|E|=7$ and $E$ has trivial stabilizer. Suppose an element of $E$ has order $P=2$ or $3$, and lift it to a row quotient $y$. Then $y^P\in K$, so on each character fiber the seven entries of $y$ are a common phase times $P$th roots of unity. Their sum is zero by Lemma \ref{fibres}, comparing $yK$ with $K$. For $P=2$ the two signs must occur equally often, and for $P=3$ the three roots must occur equally often. Neither is possible on seven columns.
+
+Color the six edges on $B$ by their differences up to sign. There are three colors. Two edges of the same color meeting at a vertex have opposite differences when oriented away from it, giving a progression of length three. If no such edges meet, every color is a perfect matching. Orienting the two edges of one color to have the same difference gives $B=\{0,u,v,u+v\}$ after translation. The two diagonals have the remaining color, so $u+v=\pm(u-v)$. This forces $2u=0$ or $2v=0$, already excluded.
+
+We may therefore write $B=\{0,x,2x,y\}$. The colors of $x$ and $2x$ are distinct because $3x\ne0$. Of the three distinct differences $y,y-x,y-2x$, at least one has one of these two colors, since the third color contains only two values. Thus $y=jx$ for $-2\leq j\leq4$. The choices $j=-1,3$ give the required progression. The only other choices, $j=-2,4$, give up to translation and sign $\{0,x,2x,4x\}$. Its differences are all multiples from $-4x$ to $4x$. Having exactly seven forces $x$ to have order seven, making $E$ a subgroup and contradicting its trivial stabilizer.
+
+For the progression, Theorem \ref{bands} shows that on each fiber the entries of a lift of $x$ are a rotated set of seventh roots. If $x$ has finite order $L$, the $L$th powers of these entries are constant on that fiber, so $7$ divides $L$. Order seven is again excluded by the stabilizer. Conversely take $H_4(\mathbb Z_2,(1,q))$. With $w=e^{2\pi i/7}$, a lift of the step has the two blocks
+\[
+ (w^j)_{0\leq j<7},\qquad (qw^j)_{0\leq j<7}.
+\]
+Its $t$th power belongs to the two group rows precisely when $7\mid t$ and $q^t=\pm1$. Take $q=e^{\pi i/L}$ for the prescribed $L$, or take $q$ of infinite order. In either case the seven consecutive differences have trivial stabilizer modulo the group rows: their interval has a unique first point whose predecessor lies outside. Hence the two group rows are exactly $K$.
+\end{proof}
+
+The program \texttt{fourcosets.py} checks the difference count in finite abelian groups and the step orders in the four-layer examples. We can now extend the density classification.
+
+\begin{cor}\label{fivelayersbound}
+For $M>5N/9$ the complete list of partial Hadamard matrices with commuting row-quotient projections consists, up to equivalence and row deletion, of Fourier matrices and $H_S(K,z)$ with $S=2,3,4$. The four-layer family is needed already at density $4/7$.
+\end{cor}
+\begin{proof}
+Proposition \ref{reduce} gives $S\leq4$. For $S=1$ use Proposition \ref{repeatfourier}. For $S=2,3$ the cosets form a progression by inspection or Lemma \ref{three}, so Theorem \ref{bands} applies. For $S=4$ use Theorem \ref{fourcosets} and apply Theorem \ref{bands} again. Fourier restrictions and all the listed arrays have commuting quotient projections. For $q$ of infinite order the $8\times14$ matrix $H_4(\mathbb Z_2,(1,q))$ has cross ratio $q$ on the constant row, the step row and the first column of each block. This excludes a Fourier restriction. Width fourteen excludes $H_2$ and $H_3$, whose widths are multiples of three and five.
+\end{proof}
+
+\phantomsection\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{99}
+\bibitem{qp} T. Banica, Quantum permutation groups, book, arXiv:2012.10975 (2024).
+\bibitem{bb} T. Banica and J. Bichon, Hopf images and inner faithful representations, \emph{Glasg. Math. J.} \textbf{52} (2010), 677--703.
+\bibitem{cayley} T. Banica and C. Fable, Cayley graphs of abelian groups and their quantum symmetries, hexagon:2611.00305 (2026).
+\bibitem{bs} T. Banica and A. Skalski, The quantum algebra of partial Hadamard matrices, \emph{Linear Algebra Appl.} \textbf{469} (2015), 364--380.
+\bibitem{bar} H.G. Barrow and R.M. Burstall, Subgraph isomorphism, matching relational structures and maximal cliques, \emph{Inform. Process. Lett.} \textbf{4} (1976), 83--84.
+\bibitem{coloring} P.J. Cameron, A. Montanaro, M.W. Newman, S. Severini and A. Winter, On the quantum chromatic number of a graph, \emph{Electron. J. Combin.} \textbf{14} (2007), R81.
+\bibitem{chvatal} V. Chv\'atal, On certain polytopes associated with graphs, \emph{J. Combin. Theory Ser. B} \textbf{18} (1975), 138--154.
+\bibitem{dita} P. Di\c{t}\u{a}, Some results on the parametrization of complex Hadamard matrices, \emph{J. Phys. A} \textbf{37} (2004), 5355--5374.
+\bibitem{fp} V.H. Fernandes and T. Paulista, On the monoid of partial isometries of a cycle graph, \emph{Turkish J. Math.} \textbf{47} (2023), 1746--1760.
+\bibitem{hou} X.-D. Hou, K.H. Leung and Q. Xiang, A generalization of an addition theorem of Kneser, \emph{J. Number Theory} \textbf{97} (2002), 1--9.
+\bibitem{jmn} F. Jaeger, M. Matsumoto and K. Nomura, Bose--Mesner algebras related to type II matrices and spin models, \emph{J. Algebraic Combin.} \textbf{8} (1998), 39--72.
+\bibitem{jaj} R. Jajcay, T. Jajcayov\'{a}, N. Szak\'{a}cs and M.B. Szendrei, Inverse monoids of partial graph automorphisms, \emph{J. Algebraic Combin.} \textbf{53} (2021), 829--849.
+\bibitem{kneser} M. Kneser, Absch\"atzung der asymptotischen Dichte von Summenmengen, \emph{Math. Z.} \textbf{58} (1953), 459--484.
+\bibitem{mcstate} J.P. McCarthy, A state-space approach to quantum permutations, \emph{Exposition. Math.} \textbf{40} (2022), 628--664.
+\bibitem{mcc} J.P. McCarthy, Tracing the orbitals of the quantum permutation group, \emph{Arch. Math.} \textbf{121} (2023), 211--224.
+\bibitem{rv} L. Rollier and S. Vaes, Quantum automorphism groups of connected locally finite graphs and quantizations of discrete groups, \emph{Int. Math. Res. Not.} \textbf{2024} (2024), 2219--2297.
+\bibitem{soltan} P.M. So{\l}tan, Quantum families of maps and quantum semigroups on finite quantum spaces, \emph{J. Geom. Phys.} \textbf{59} (2009), 354--368.
+\bibitem{games} P.M. So{\l}tan, Quantum semigroups from synchronous games, \emph{J. Math. Phys.} \textbf{60} (2019), 042203.
+\bibitem{tori} TB 2.0 and GPT 6.2, Maximal torus theory for crossed product quantum groups, hexagon:2611.00503 (2026).
+\bibitem{prime} Teo B and Chat GPT, On Fourier and Hadamard matrices of prime order,\newline
+hexagon:2611.00221~(2026).
+\bibitem{voigt} C. Voigt, Infinite quantum permutations, \emph{Adv. Math.} \textbf{415} (2023), 108887.
+\bibitem{wlfz} Y.-L. Wang, M.-S. Li, S.-M. Fei and Z.-J. Zheng, Connecting unextendible maximally entangled base with partial Hadamard matrices, \emph{Quantum Inf. Process.} \textbf{16} (2017), 84.
+\end{thebibliography}
+\end{document}
